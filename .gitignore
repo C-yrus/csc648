@@ -1,4 +1,6 @@
 *.DS_Store
+*.xml
+*.iml
 
 # Logs
 logs
