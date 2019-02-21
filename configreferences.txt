@@ -1,0 +1,18 @@
+					Config References 
+•	Amazon AWS Account: 
+	Username/Email: zmelikov@mail.sfsu.edu
+	Password: SFSUcsc648
+
+•	Operating System: Ubuntu 18.04.1 LTS
+
+•	Database: PostgreSQL 11.1
+
+•	Web Server: NGINX 1.15.8
+
+•	Server-Side Language: JavaScript 2018 version (1.8.5)
+
+•	Additional Technologies: Web Framework: Node JS 10.15.1 LTS, Express 4.16.4  
+
+•	Bootstrap 4.3.0
+
+•	IDE: Webstorm 2018.3 (Optional), Visual Studio Code(Optional), Sublime Text(Optional)
