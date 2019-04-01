@@ -8,11 +8,9 @@ const listingRouter = require('./routes/listings');
 
 const app = express();
 
-// database setup
-// TBD
-
 // views directory & engine setup
-// i setup nunjucks (https://mozilla.github.io/nunjucks/), LET ME KNOW IF U WANT THIS CHANGED FRONTEND
+// i setup nunjucks (https://mozilla.github.io/nunjucks/)
+// LET ME KNOW IF U WANT THIS CHANGED FRONTEND
 nunjucks.configure('views', {
     express: app,
     autoescape: true
@@ -28,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
-// static file setup
+// static file setup (images, css, frontend javascript)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
