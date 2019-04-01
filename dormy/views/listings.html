@@ -1,0 +1,11 @@
+<ul>
+    {% for listing in listings %}
+        <li>Title: {{ listing.title }}</li>
+        <li>Price: {{ listing.price }}</li>
+        <li>Address: {{ listing.address }}</li>
+        <li>Distance: {{ listing.distance }} miles</li>
+        <li>Number of Rooms: {{ listing.numRooms }}</li>
+    {% else %}
+        <li>No listings available</li>
+    {% endfor %}
+</ul>

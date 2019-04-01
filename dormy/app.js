@@ -4,10 +4,12 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 const nunjucks = require('nunjucks');
+const listingRouter = require('./routes/listings');
 
 const app = express();
 
 // database setup
+// TBD
 
 // views directory & engine setup
 // i setup nunjucks (https://mozilla.github.io/nunjucks/), LET ME KNOW IF U WANT THIS CHANGED FRONTEND
@@ -26,21 +28,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
-app.get('/image.jpg', function(req, res) {
-    res.contentType('jpeg')
-    res.end(data, 'binary');
-});
-
 // static file setup
-app.use('/public', express.static(__dirname + "/public"));
-app.get("/", express.static(path.join(__dirname, "./public")));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('/public'));
 
 // routes
 app.get('/', (req, res) => res.render('index'));
+app.use('/listings', listingRouter);
 
 // if it made it here then an error occurred, throw 500 error
+app.use((req, res, next) => next(createError(404)));
 app.use((req, res, next) => next(createError(500)));
 
 app.listen(3000, () => console.log(`Express running at http://localhost:3000`));
