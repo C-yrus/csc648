@@ -1,0 +1,15 @@
+<ul>
+    {% for listing in listings %}
+        <li>Type: {{ listing.type }}</li>
+        <li>Title: {{ listing.title }}</li>
+        <li>Address: {{ listing.address }}</li>
+        <li>Beds: {{ listing.beds }}</li>
+        <li>Baths: {{ listing.baths }}</li>
+        <li>Rent: ${{ listing.rent }}/month</li>
+        <li>Distance from SFSU: {{ listing.distance }} miles</li>
+        <li>Added: {{ listing.created }}</li>
+        <br />
+    {% else %}
+        <li>No listings available...</li>
+    {% endfor %}
+</ul>
