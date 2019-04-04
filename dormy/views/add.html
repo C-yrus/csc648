@@ -1,0 +1,24 @@
+<form action="/listings/add" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title" />
+    <br />
+    <input type="text" name="address" placeholder="Address" />
+    <br />
+    <input type="number" name="beds" placeholder="Number of Beds" />
+    <br />
+    <input type="number" name="baths" placeholder="Number of Baths" />
+    <br />
+    <input type="number" name="rent" placeholder="Rent per month" />
+    <br />
+    <input type="number" name="distance" placeholder="Distance from SFSU (mi)" />
+    <br />
+    <select name="type">
+        <option value="apartment">Apartment</option>
+        <option value="house">House</option>
+        <option value="condo">Condo</option>
+    </select>
+    <br />
+    <input type="file" name="thumbnail" />
+    <br />
+    <br />
+    <input type="submit" value="Add" />
+</form>
