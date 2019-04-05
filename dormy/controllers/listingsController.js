@@ -28,14 +28,15 @@ module.exports.add = (req, res) => {
 };
 
 // controller for route; POST `/listings/add`
+// thumbnail upload is stored locally in /public/thumbnails/
+// faster than BLOB and much smaller size
 module.exports.addNew = (req, res) => {
-    db.one(`INSERT INTO listings(title, address, beds, baths, rent, distance, type, created) 
-            VALUES($1, $2, $3, $4, $5, $6, $7, now()) RETURNING id`,
-            [req.body.title, req.body.address, req.body.beds, req.body.baths,
-                req.body.rent, req.body.distance, req.body.type])
-        .then(listing => {
+    db.one(`INSERT INTO listings(title, address, beds, baths, rent, distance, type, created, thumbnail) 
+            VALUES($1, $2, $3, $4, $5, $6, $7, now(), $8) RETURNING id`,
+        [req.body.title, req.body.address, req.body.beds, req.body.baths,
+            req.body.rent, req.body.distance, req.body.type, req.file.filename])
+        .then(() => {
             res.redirect('/listings');
-            console.log(listing);
         })
         .catch(err => res.send(`Error creating listing; ${err}`));
 };
