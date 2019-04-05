@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<head>
+    <style>
+        .container1 {
+            position: absolute;
+            top: 20px;
+            left: 16px;
+        }
+
+        .topright {
+            position: absolute;
+            top: 200px;
+            right: 16px;
+            font-size: 18px;
+        }
+
+        img {
+            width: 12%;
+            height: auto;
+            opacity: 0.8;
+        }
+    </style>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 0px;
+        }
+
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            left: 450px;
+        }
+
+        .topnav a.active {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .topnav input[type=text] {
+            float: left;
+            padding: 8px;
+            margin-top: 8px;
+            /*margin-left: 500px;*/
+            border: none;
+            width: 25%;
+            font-size: 17px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 11px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>myFirstWeb</title>
+</head>
+<body>
+<div class="container1" >
+    <img src="dormyprofile.jpg"  width="300" height="300">
+</div>
+<div class="jumbotron">
+<div class="container">
+    <h1>Dormy Home Rental Services</h1>
+    <p>CSC648 Team 01</p>
+    <p>San Francisco State University</p>
+</div>
+</div>
+
+
+
+<div class="container">
+<div class="dropdown"style="float:left;">
+        <button class="dropbtn">
+            <input value = "type">
+        </button>
+        <div class="dropdown-content">
+            <a id= "type" >Apartment</a>
+            <a id="type">Condo</a>
+            <a id="type">House</a>
+        </div>
+    </div>
+    <div class="topnav">
+        <input type="text" placeholder="Search..">
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-4" ></div>
+    <div class="col-sm-4" ></div>
+    <div class="topright">
+        <a href="#about"> <kbd>Login / Register</kbd> </a>
+    </div>
+</div>
+
+</body>
+</html>
