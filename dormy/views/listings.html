@@ -1,25 +1,21 @@
-<!--<a href="/listings/add">Add New Listing</a>-->
+<a href="/listings/add">Add New Listing</a>
 
-<!--<ul>-->
-<!--    {% for listing in listings %}-->
-<!--        <li>Type: {{ listing.type }}</li>-->
-<!--        <li>Title: {{ listing.title }}</li>-->
-<!--        <li>Address: {{ listing.address }}</li>-->
-<!--        <li>Beds: {{ listing.beds }}</li>-->
-<!--        <li>Baths: {{ listing.baths }}</li>-->
-<!--        <li>Rent: ${{ listing.rent }}/month</li>-->
-<!--        <li>Distance from SFSU: {{ listing.distance }} miles</li>-->
-<!--        <li>Added: {{ listing.created }}</li>-->
-<!--        <br />-->
-<!--    {% else %}-->
-<!--        <li>No listings available...</li>-->
-<!--    {% endfor %}-->
-<!--</ul>-->
-
-
-<!--{% include "layouts/footer.html" %}-->
-
-
+<ul>
+    {% for listing in listings %}
+        <li>Thumbnail: <img src="/thumbnails/{{listing.thumbnail}}"  alt="{{listing.title}}"/></li>
+        <li>Type: {{ listing.type }}</li>
+        <li>Title: {{ listing.title }}</li>
+        <li>Address: {{ listing.address }}</li>
+        <li>Beds: {{ listing.beds }}</li>
+        <li>Baths: {{ listing.baths }}</li>
+        <li>Rent: ${{ listing.rent }}/month</li>
+        <li>Distance from SFSU: {{ listing.distance }} miles</li>
+        <li>Added: {{ listing.created }}</li>
+        <br />
+    {% else %}
+        <li>No listings available...</li>
+    {% endfor %}
+</ul>
 
 <!--<a href="/listings/add">Add New Listing</a>-->
 
@@ -41,16 +37,10 @@
 <!--</ul>-->
 
 
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!-- <!DOCTYPE html>
+
 <html>
 <head>
-<!--    % include "layouts/navigation.html"-->
-    <!--    % include "layouts/footer.html"-->
 
     <title>Listings</title>
     <a href="/listings/add">Add New Listing</a>
@@ -191,23 +181,6 @@ and open the template in the editor.
         </div>
     </div>
 
-    <!--<ul>-->
-    <!--    {% for listing in listings %}-->
-    <!--    <li>Type: {{ listing.type }}</li>-->
-    <!--    <li>Title: {{ listing.title }}</li>-->
-    <!--    <li>Address: {{ listing.address }}</li>-->
-    <!--    <li>Beds: {{ listing.beds }}</li>-->
-    <!--    <li>Baths: {{ listing.baths }}</li>-->
-    <!--    <li>Rent: ${{ listing.rent }}/month</li>-->
-    <!--    <li>Distance from SFSU: {{ listing.distance }} miles</li>-->
-    <!--    <li>Added: {{ listing.created }}</li>-->
-    <!--    <br />-->
-    <!--    {% else %}-->
-    <!--    <li>No listings available...</li>-->
-    <!--    {% endfor %}-->
-    <!--</ul>-->
-
-
 </div>
 </body>
-</html>
+</html> -->
