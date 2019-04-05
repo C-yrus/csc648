@@ -5,7 +5,7 @@
 -- Dumped from database version 10.7
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-04-02 12:14:49 PDT
+-- Started on 2019-04-04 21:56:44 PDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -36,7 +36,8 @@ CREATE TABLE public.listings (
     distance integer,
     type text,
     created timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    user_id integer
+    user_id integer,
+    thumbnail text
 );
 
 
@@ -231,9 +232,15 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: listings; Type: TABLE DATA; Schema: public; Owner: dormyuser
 --
 
-COPY public.listings (id, title, address, beds, baths, rent, distance, type, created, user_id) FROM stdin;
-2	Tiny Studio Condo	399 Fremont St, San Francisco, CA 94105	1	1	5000	15	condo	2019-04-02 12:04:31.391812	\N
-1	Cozy Apartment Close to SFSU	1234 Santa Rd, San Francisco, CA 94105	2	1	1000	5	apartment	2019-04-02 12:04:31.391812	\N
+COPY public.listings (id, title, address, beds, baths, rent, distance, type, created, user_id, thumbnail) FROM stdin;
+20	Apartment 1	Apartment 1	2	2	15	2	apartment	2019-04-04 21:36:12.221656	\N	thumbnail-1554438972204.png
+21	Apartment 2	Apartment 2	2	2	9030	5	apartment	2019-04-04 21:37:31.843497	\N	thumbnail-1554439051826.png
+22	Apartment 3	Apartment 3	3	3	15000	3	house	2019-04-04 21:38:03.329711	\N	thumbnail-1554439083302.png
+23	Apartment 4	Apartment 4	4	4	9000	1	apartment	2019-04-04 21:39:17.536579	\N	thumbnail-1554439157526.png
+24	Apartment 5	Apartment 5	9	9	90099	10	condo	2019-04-04 21:40:05.216074	\N	thumbnail-1554439205206.png
+25	Condo 1	Condo 1	7	7	712	1	condo	2019-04-04 21:40:57.419145	\N	thumbnail-1554439257410.png
+26	House 3	House 3	3	3	33	3	house	2019-04-04 21:43:33.311987	\N	thumbnail-1554439413301.png
+19	HOUSE	House address	5	5	15000	500	house	2019-04-04 17:43:30.684646	\N	thumbnail-1554425010670.png
 \.
 
 
@@ -273,7 +280,7 @@ COPY public.users (id, first_name, last_name, email, password, phone, created) F
 -- Name: listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dormyuser
 --
 
-SELECT pg_catalog.setval('public.listings_id_seq', 2, true);
+SELECT pg_catalog.setval('public.listings_id_seq', 26, true);
 
 
 --
@@ -384,7 +391,7 @@ ALTER TABLE ONLY public.responses
     ADD CONSTRAINT responses_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
--- Completed on 2019-04-02 12:14:50 PDT
+-- Completed on 2019-04-04 21:56:45 PDT
 
 --
 -- PostgreSQL database dump complete
