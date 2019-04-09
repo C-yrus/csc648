@@ -1,167 +1,18 @@
 <a href="/listings/add">Add New Listing</a>
 
 <ul>
-    {% for listing in listings %}
-        <li>Thumbnail: <img src="/thumbnails/{{listing.thumbnail}}" width="500px" height="300px"  alt="{{listing.title}}"/></li>
-        <li>Type: {{ listing.type }}</li>
-        <li>Title: {{ listing.title }}</li>
-        <li>Address: {{ listing.address }}</li>
-        <li>Beds: {{ listing.beds }}</li>
-        <li>Baths: {{ listing.baths }}</li>
-        <li>Rent: ${{ listing.rent }}/month</li>
-        <li>Distance from SFSU: {{ listing.distance }} miles</li>
-        <li>Added: {{ listing.created }}</li>
-        <br />
-    {% else %}
-        <li>No listings available...</li>
-    {% endfor %}
-</ul>
-
-
-<!--<!DOCTYPE html>-->
-
-<!--<html>-->
-<!--<head>-->
-
-    <!--<title>Listings</title>-->
-    <!--<a href="/listings/add">Add New Listing</a>-->
-
-
-<!--</head>-->
-<!--<body>-->
-
-
-
-<!--<div class="row">-->
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>Apartment 1</h4>-->
-
-                <!--<img src="/images/1.jpg" alt="apartment1" width="500" height="300">-->
-                <!--<p>$15</p>-->
-                <!--</a><p><a href="/listings/5c1eae8d1757ff29ef654462" target="_blank"></a><a class="btn" href="/listings/5c1eae8d1757ff29ef654462">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>Apartment 2</h4>-->
-
-                <!--<img src="images/2.jpg" alt="apartment2" width="500" height="300">-->
-                <!--<p>$903344</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>Apartment 3</h4>-->
-
-                <!--<img src="images/3.png" alt="apartment3" width="500" height="300">-->
-                <!--<p>$2444</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>House 1</h4>-->
-
-                <!--<img src="images/4.jpg" alt="house1" width="500" height="300">-->
-                <!--<p>$1545</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>House 2</h4>-->
-
-                <!--<img src="images/5.jpg" alt="house2" width="500" height="300">-->
-                <!--<p>$1565765</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>House3</h4>-->
-
-                <!--<img src="images/6.jpg" alt="house3" width="500" height="300">-->
-                <!--<p>$15</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>Condo 1</h4>-->
-
-                <!--<img src="images/7.jpeg" alt="condo1" width="500" height="300">-->
-                <!--<p>$100000000</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>Condo 2</h4>-->
-
-                <!--<img src="images/8.jpg" alt="condo2" width="500" height="300">-->
-                <!--<p>$100000000</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-
-    <!--<div >-->
-        <!--<div class="thumbnail">-->
-            <!--<div class="caption">-->
-
-                <!--<h4>Condo 3</h4>-->
-
-                <!--<img src="images/9.jpeg" alt="condo1" width="500" height="300">-->
-                <!--<p>$99</p>-->
-                <!--</a><p><a href="/listingsInfo" target="_blank"></a><a class="btn" href="/listingsInfo">More Info</a></p>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
+        {% for listing in listings %}
+            <li>Thumbnail: <img src="/thumbnails/{{listing.thumbnail}}" width="500px" height="300px"  alt="{{listing.title}}"/></li>
+            <li>Type: {{ listing.type }}</li>
+            <li>Title: {{ listing.title }}</li>
+            <li>Address: {{ listing.address }}</li>
+            <li>Beds: {{ listing.beds }}</li>
+            <li>Baths: {{ listing.baths }}</li>
+            <li>Rent: ${{ listing.rent }}/month</li>
+            <li>Distance from SFSU: {{ listing.distance }} miles</li>
+            <li>Added: {{ listing.created }}</li>
+            <br />
+        {% else %}
+            <li>No listings available...</li>
+        {% endfor %}
+</ul>    

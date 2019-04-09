@@ -29,6 +29,8 @@ app.use(cookieParser());
 // static file setup (images, css, frontend javascript)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(express.static('public'));
+
 // routes
 app.get('/', (req, res) => res.render('index'));
 app.use('/listings', listingRouter);
@@ -36,5 +38,9 @@ app.use('/listings', listingRouter);
 // if it made it here then an error occurred, throw 500 error
 app.use((req, res, next) => next(createError(404)));
 app.use((req, res, next) => next(createError(500)));
+
+app.get('/css/*', function(req, res){
+    res.sendFile(__dirname + '/css/styles.css')
+});
 
 app.listen(3000, () => console.log(`Express running at http://localhost:3000`));
