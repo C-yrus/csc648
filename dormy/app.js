@@ -39,8 +39,8 @@ app.use('/listings', listingRouter);
 app.use((req, res, next) => next(createError(404)));
 app.use((req, res, next) => next(createError(500)));
 
-// app.get('/css/*', function(req, res){
-//     res.sendFile(__dirname + '/css/styles.css')
-// });
+app.get('/css/*', function(req, res){
+    res.sendFile(__dirname + '/css/styles.css')
+});
 
 app.listen(3000, () => console.log(`Express running at http://localhost:3000`));
