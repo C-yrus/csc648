@@ -36,7 +36,6 @@ app.get('/', (req, res) => res.render('index'));
 app.use('/listings', listingRouter);
 
 // if it made it here then an error occurred, throw 500 error
-app.use((req, res, next) => next(createError(404)));
 app.use((req, res, next) => next(createError(500)));
 
 app.get('/css/*', function(req, res){

@@ -7,20 +7,37 @@ module.exports.list = (req, res) => {
     let query = req.query.query;
     let q = `SELECT * FROM listings`;
     if (type && query) {
-        q = `SELECT * FROM listings WHERE type = '${type}' AND (title LIKE '%${query}%' OR address LIKE '%${query}%')`;
+        q = `SELECT * FROM listings WHERE type = '${type}' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
     } else if (!type && query) {
-        q = `SELECT * FROM listings WHERE title LIKE '%${query}%' OR address LIKE '%${query}%'`;
+        q = `SELECT * FROM listings WHERE LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
     } else if (type && !query) {
         q = `SELECT * FROM listings WHERE type = '${type}'`;
     }
     db.any(q)
         .then(data => {
             res.render('listings', {
-                listings: data
+                listings: data,
+                qCount: data.length,
+
             });
         })
         .catch(err => res.send(`Error retrieving listings; ${err}`));
 };
+
+// controller for route: GET `/listings/:id`
+// `:id` is populated from the listing detail route in /routes/
+module.exports.detail = (req, res) => {
+    db.one(`SELECT * FROM listings WHERE id = ${req.params.id}`)
+    .then(data => {
+        // res.json({
+        //     listing: data
+        // })
+        res.render('detail', {
+            listing: data,
+        });
+    })
+    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
+}
 
 // controller for route; GET `/listings/add`
 module.exports.add = (req, res) => {

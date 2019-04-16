@@ -1,18 +1,19 @@
 <a href="/listings/add">Add New Listing</a>
 
 <ul>
-        {% for listing in listings %}
-            <li>Thumbnail: <img src="/thumbnails/{{listing.thumbnail}}" width="500px" height="300px"  alt="{{listing.title}}"/></li>
-            <li>Type: {{ listing.type }}</li>
-            <li>Title: {{ listing.title }}</li>
-            <li>Address: {{ listing.address }}</li>
-            <li>Beds: {{ listing.beds }}</li>
-            <li>Baths: {{ listing.baths }}</li>
-            <li>Rent: ${{ listing.rent }}/month</li>
-            <li>Distance from SFSU: {{ listing.distance }} miles</li>
-            <li>Added: {{ listing.created }}</li>
-            <br />
-        {% else %}
-            <li>No listings available...</li>
-        {% endfor %}
+    {% for listing in listings %}
+        <li>Thumbnail: <img src="/thumbnails/{{listing.thumbnail}}" width="500px" height="300px"  alt="{{listing.title}}"/></li>
+        <li>Type: {{ listing.type }}</li>
+        <li>Title: {{ listing.title }}</li>
+        <li>Address: {{ listing.address }}</li>
+        <li>Beds: {{ listing.beds }}</li>
+        <li>Baths: {{ listing.baths }}</li>
+        <li>Rent: ${{ listing.rent }}/month</li>
+        <li>Distance from SFSU: {{ listing.distance }} miles</li>
+        <li>Added: {{ listing.created }}</li>
+        <li><a href="/listings/{{ listing.id }}">View Detail</a></li>
+        <br />
+    {% else %}
+        <li>No listings available...</li>
+    {% endfor %}
 </ul>    
