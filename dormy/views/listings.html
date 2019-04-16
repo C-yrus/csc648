@@ -1,71 +1,18 @@
-<!DOCTYPE html>
-{% include "layouts/navigation.html" %}
-<html lang="en">
+<a href="/listings/add">Add New Listing</a>
 
-<body>
-<!--<a href="/listings/add">Add New Listing</a>-->
-
-<h1></h1>
-<!-- SECTION -->
-<div class=" section">
-    <!-- container -->
-    <h4 class="offset-md-1 title">Search result: {{listing.count}}</h4>
-    <div class="container">
-        <div class="card-deck">
-            <div class="card">
-                <div class="card-block">
-                    <ul>
-                        {% for listing in listings %}
-                        <li>Thumbnail: <img class="card-img" src="/thumbnails/{{listing.thumbnail}}" width="500px" height="500px"  alt="{{listing.title}}"/></li>
-                        <li>Type: {{ listing.type }}</li>
-                        <li>Title: {{ listing.title }}</li>
-                        <li>Address: {{ listing.address }}</li>
-                        <li>Beds: {{ listing.beds }}</li>
-                        <li>Baths: {{ listing.baths }}</li>
-                        <li>Rent: ${{ listing.rent }}/month</li>
-                        <li>Distance from SFSU: {{ listing.distance }} miles</li>
-                        <li>Added: {{ listing.created }}</li>
-                        <br />
-                        {% else %}
-                        <li>No listings available...</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- /container -->
-</div>
-<!-- /SECTION -->
-
-<!--<div class="container">-->
-    <!--<div class="row">-->
-        <!--<div class="offset-md-2 col-md-3">-->
-            <!--<ul>-->
-                <!--{% for listing in listings %}-->
-                <!--<li>Thumbnail: <img src="/thumbnails/{{listing.thumbnail}}" width="500px" height="300px"  alt="{{listing.title}}"/></li>-->
-                <!--<li>Type: {{ listing.type }}</li>-->
-                <!--<li>Title: {{ listing.title }}</li>-->
-                <!--<li>Address: {{ listing.address }}</li>-->
-                <!--<li>Beds: {{ listing.beds }}</li>-->
-                <!--<li>Baths: {{ listing.baths }}</li>-->
-                <!--<li>Rent: ${{ listing.rent }}/month</li>-->
-                <!--<li>Distance from SFSU: {{ listing.distance }} miles</li>-->
-                <!--<li>Added: {{ listing.created }}</li>-->
-                <!--<br />-->
-                <!--{% else %}-->
-                <!--<li>No listings available...</li>-->
-                <!--{% endfor %}-->
-            <!--</ul>-->
-
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-
-
-
-</body>
-</html>
-
-{% include "layouts/footer.html" %}
+<ul>
+        {% for listing in listings %}
+            <li>Thumbnail: <img src="/thumbnails/{{listing.thumbnail}}" width="500px" height="300px"  alt="{{listing.title}}"/></li>
+            <li>Type: {{ listing.type }}</li>
+            <li>Title: {{ listing.title }}</li>
+            <li>Address: {{ listing.address }}</li>
+            <li>Beds: {{ listing.beds }}</li>
+            <li>Baths: {{ listing.baths }}</li>
+            <li>Rent: ${{ listing.rent }}/month</li>
+            <li>Distance from SFSU: {{ listing.distance }} miles</li>
+            <li>Added: {{ listing.created }}</li>
+            <br />
+        {% else %}
+            <li>No listings available...</li>
+        {% endfor %}
+</ul>    
