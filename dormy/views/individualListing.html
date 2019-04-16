@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Individual Listing</title>
+	<link rel="stylesheet" type="text/css" href="../css/individualListing.css">
+</head>
+<body>
+	<header class="title">
+			<h1>Listing Name</h1>
+	</header>
+	<div class="image">
+		<img src="images/house.png" alt="dormy house">
+
+	<div class="box-1">
+		<h3>Description</h3>
+		<ul class="listing-description">
+
+                <li>Type: {{ listing.type }}</li>
+                <li>Title: {{ listing.title }}</li>
+                <li>Address: {{ listing.address }}</li>
+                <li>Beds: {{ listing.beds }}</li>
+                <li>Baths: {{ listing.baths }}</li>
+                <li>Rent: ${{ listing.rent }}/month</li>
+                <li>Distance from SFSU: {{ listing.distance }} miles</li>
+                <li>Added: {{ listing.created }}</li>
+            </ul>
+            <button class="review">Review Listing</button>
+            <button>Contact Landlord</button>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <!--
+            <a class="button" href="">Contact Landlord</a>
+        -->
+        </div>
+
+	</div>
+
+	<!--
+	<button class="contact">Contact Landlord</button>
+-->
+	<footer class="main-footer">Copyright &copy; Domry 2019</footer>
+</body>
+</html>
