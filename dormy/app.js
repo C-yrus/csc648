@@ -4,6 +4,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 const nunjucks = require('nunjucks');
+const passport = require('./config/passport');
+const session = require('express-session');
+
+const accountRouter = require('./routes/account');
 const listingRouter = require('./routes/listings');
 
 const app = express();
@@ -29,10 +33,18 @@ app.use(cookieParser());
 // static file setup (images, css, frontend javascript)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(express.static('public'));
+// sessions & passport config
+app.use(session({
+    secret: 'SUPERSECRETKEYUSED4SESSIONTOKENGENERATION',
+    resave: true,
+    saveUninitialized: true,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // routes
 app.get('/', (req, res) => res.render('index'));
+app.use('/account', accountRouter);
 app.use('/listings', listingRouter);
 
 // if it made it here then an error occurred, throw 500 error
