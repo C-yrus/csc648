@@ -24,7 +24,7 @@ app.set('view engine', 'html');
 // logger for outputs to console
 app.use(logger('dev'));
 
-// middleware used populate body request property; (express.json())
+// middleware used to populate body request property; (req.body)
 // other middleware for encoding and cookies
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));

@@ -29,15 +29,12 @@ module.exports.list = (req, res) => {
 module.exports.detail = (req, res) => {
     db.one(`SELECT * FROM listings WHERE id = ${req.params.id}`)
     .then(data => {
-        // res.json({
-        //     listing: data
-        // })
         res.render('detail', {
             listing: data,
         });
     })
     .catch(err => res.send(`Error retrieving listing detail; ${err}`));
-}
+};
 
 // controller for route; GET `/listings/add`
 module.exports.add = (req, res) => {
