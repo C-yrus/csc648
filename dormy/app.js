@@ -33,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.get('/', (req, res) => res.render('index'));
+app.get('/individualListing.html', (req, res) => res.render('individualListing'));
 app.use('/listings', listingRouter);
 
 // if it made it here then an error occurred, throw 500 error
