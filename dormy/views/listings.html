@@ -10,13 +10,27 @@
 <body>
 
 <!-- SECTION -->
-<h4 class="title">Search result: {{ qCount }}</h4>
+<div class="col-md-3">
+    <h4 class="title">Search result: {{ qCount }}</h4>
+</div>
+
 
 <br />
-
-
-
 <!-- Search filter -->
+
+<form class="form-inline my-2 my-lg-0" action="/listings" class="search_form" id="search_form">
+        <div class="col-md-3">
+            <h3>Distance From SFSU: </h3>
+            <button  name="type" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <option value="">2 miles</option> </button>
+            <button name="type" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <option value="apartment">4 miles</option>
+            </button>
+            <button  name="type" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <option value="house">6 miles or above</option>
+            </button>
+        </div>
+</form>
 <!-- End Search Filter -->
 
 
@@ -24,7 +38,7 @@
 {% for listing in listings %}
 
 <div class=" offset-md-2 zone grid-wrapper position-relative">
-    <div class="zone" href="/individualListing.html">
+    <div  href="/individualListing.html">
         <a href="/individualListing.html">
             <img class="image" src="../thumbnails/{{listing.thumbnail}}" width="430px" height="285px"  alt="{{listing.title}}"/>
         </a>
