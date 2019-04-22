@@ -5,19 +5,19 @@ body {
 .zone {
     /*padding:30px 50px;*/
     /*cursor:pointer;*/
-    color:#FFF;
-    font-size:2em;
-    border-radius:4px;
-    border:1px solid #bbb;
+    color: #FFF;
+    font-size: 2em;
+    border-radius: 4px;
+    border: 1px solid #bbb;
     transition: all 0.3s linear;
 }
 
-.zone:hover {
+/* .zone:hover {
     -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
     -moz-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
     -o-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
     box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
-}
+} */
 
 /***********************************************************************
  *  Nav Bar
@@ -48,14 +48,14 @@ a {
     color: #f5f5f6;
     text-decoration: none;
 }
-    
+
 
 /***********************************************************************
  *  Cover
  **********************************************************************/
 .container {
     /*show heigh: auto*/
-    height: 10vh; 
+    height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,17 +68,39 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .box {
     background-color: #444;
     padding: 130px;
     margin: 20px;
+    border: 5px dashed purple;
 }
 
-.box > img {
-    width: 100%;
+.card__image {
+    color: white;
+    width: auto;
+    height: auto;
+    object-fit: fill;
+    text-align: center;
+    padding-inline-start: 5px;
+    padding-inline-end: 5px;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    background-color: white;
+    padding: 10px;
+
+}
+
 
 /***********************************************************************
  *  Footer
@@ -93,11 +115,11 @@ footer {
 .green {
     background: #56B870; /* Old browsers */
     background: -moz-linear-gradient(top, #56B870 0%, #a5c956 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#56B870), color-stop(100%,#a5c956)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #56B870 0%,#a5c956 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #56B870 0%,#a5c956 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #56B870 0%,#a5c956 100%); /* IE10+ */
-    background: linear-gradient(top, #56B870 0%,#a5c956 100%); /* W3C */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #56B870), color-stop(100%, #a5c956)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #56B870 0%, #a5c956 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #56B870 0%, #a5c956 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #56B870 0%, #a5c956 100%); /* IE10+ */
+    background: linear-gradient(top, #56B870 0%, #a5c956 100%); /* W3C */
 }
 
 
@@ -107,24 +129,24 @@ footer {
 .yellow {
     background: #F3AAAA; /* Old browsers */
     background: -moz-linear-gradient(top, #F3AAAA 0%, #febf04 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F3AAAA), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* IE10+ */
-    background: linear-gradient(top, #F3AAAA 0%,#febf04 100%); /* W3C */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F3AAAA), color-stop(100%, #febf04)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #F3AAAA 0%, #febf04 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #F3AAAA 0%, #febf04 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #F3AAAA 0%, #febf04 100%); /* IE10+ */
+    background: linear-gradient(top, #F3AAAA 0%, #febf04 100%); /* W3C */
 }
 
 /***********************************************************************
  *  Blue Background
  **********************************************************************/
 .blue {
-    background: #7abcff; /* Old browsers */
-    background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* IE10+ */
-    background: linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
+    background: white; /* Old browsers */
+    background: -moz-linear-gradient(top, white 0%, white 44%, white 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(44%, white), color-stop(100%, white)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, white 0%, white 44%, white 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, white 0%, white 44%, white 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, white 0%, white 44%, white 100%); /* IE10+ */
+    background: linear-gradient(top, white 0%, white 44%, white 100%); /* W3C */
 }
 
 /* Register and Login */
@@ -137,7 +159,7 @@ footer {
 }
 
 /* padding for user registration, login, + */
-.makeAP{
+.makeAP {
     position: relative;
     right: 1px;
     padding-top: 20px;
@@ -147,12 +169,12 @@ footer {
 
 /* padding for make a post and search bar */
 .navbar-brand {
-    padding-inline-start: 10px; 
+    padding-inline-start: 10px;
 }
 
 /* SEARCH PADDING */
 .searchPadding {
-    padding-inline-start: 57px; 
+    padding-inline-start: 57px;
 }
 
 /* TOP HEADER */
@@ -172,4 +194,15 @@ footer {
     background: #FFF;
     border: 1px solid #E4E7ED;
     height: 40px;
+}
+
+.contains {
+    border-radius: 4px;
+    border: 1px solid #bbb;
+
+}
+
+/* IMAGE on home page */
+.card__image{
+    border-radius: 3%;
 }

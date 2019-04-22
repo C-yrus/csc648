@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dormy</title>
+    <!--    <link rel="stylesheet" type="text/css" href="store.css">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    
+<div class="bg-success">
+    <!--SEARCH BAR-->
+    <!--HEADER-->
+    <header>
+        <!-- TOP HEADER -->
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-left">
+                    <li><a href="#">THIS IS A SCHOOL PROJECT FROM SAN FRANCISCO STATE UNIVERSITY- TEAM 01</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- MAIN HEADER -->
+        <div id="header">
+
+            <div class="header_background">
+<!--               <div class="background_image" style="background-image:url(../images/cta.jpg)"></div>-->
+            </div>
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <!-- LOGO -->
+                    <!-- LOGO HERE -->
+                    <!-- LOGO End-->
+
+                    <div class="col-md-3">
+                        <div class="header-logo">
+
+                            <a href="/" class="logo">
+                                <img src="../images/dormyprofile.jpg" width="100" height="100">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /LOGO -->
+
+
+                    <!--SEARCH BAR-->
+                    <div class="col-md-6">
+                        <div class="header-search">
+                            <form action="/listings" class="search_form" id="search_form">
+                                <select name="type" class="input-select">
+                                    <option value="">All</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="house">House</option>
+                                    <option value="condo">Condo</option>
+                                </select>
+                                <input class="input" placeholder="Search here" type="text" name="query"
+                                       class="search_input" placeholder="Search...">
+                                <button class="search-btn">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /SEARCH BAR -->
+                    <!--Modal: Login / Register Form-->
+                    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog cascading-modal" role="document">
+                            <!--Content-->
+                            <div class="modal-content">
+
+                                <!--Modal cascading tabs-->
+                                <div class="modal-c-tabs">
+
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i
+                                                    class="fas fa-user mr-1"></i>
+                                                Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i
+                                                    class="fas fa-user-plus mr-1"></i>
+                                                Register</a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Tab panels -->
+                                    <div class="tab-content">
+                                        <!--Panel 7-->
+                                        <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                                            <!--Body-->
+                                            <div class="modal-body mb-1">
+                                                <div class="md-form form-sm mb-5">
+                                                    <i class="fas fa-envelope prefix"></i>
+                                                    <input type="email" id="modalLRInput10"
+                                                           class="form-control form-control-sm validate">
+                                                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your
+                                                        email</label>
+                                                </div>
+
+                                                <div class="md-form form-sm mb-4">
+                                                    <i class="fas fa-lock prefix"></i>
+                                                    <input type="password" id="modalLRInput11"
+                                                           class="form-control form-control-sm validate">
+                                                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your
+                                                        password</label>
+                                                </div>
+                                                <div class="text-center mt-2">
+                                                    <button class="btn btn-info">Log in <i
+                                                            class="fas fa-sign-in ml-1"></i></button>
+                                                </div>
+                                            </div>
+                                            <!--Footer-->
+                                            <div class="modal-footer">
+                                                <div class="options text-center text-md-right mt-1">
+                                                    <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
+                                                    <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                                                </div>
+                                                <button type="button" class="btn btn-outline-info waves-effect ml-auto"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                        <!--/.Panel 7-->
+
+                                        <!--Panel 8-->
+                                        <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                                            <!--Body-->
+                                            <div class="modal-body">
+                                                <div class="md-form form-sm mb-5">
+                                                    <i class="fas fa-envelope prefix"></i>
+                                                    <input type="email" id="modalLRInput12"
+                                                           class="form-control form-control-sm validate">
+                                                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your
+                                                        email</label>
+                                                </div>
+
+                                                <div class="md-form form-sm mb-5">
+                                                    <i class="fas fa-lock prefix"></i>
+                                                    <input type="password" id="modalLRInput13"
+                                                           class="form-control form-control-sm validate">
+                                                    <label data-error="wrong" data-success="right" for="modalLRInput13">Your
+                                                        password</label>
+                                                </div>
+
+                                                <div class="md-form form-sm mb-4">
+                                                    <i class="fas fa-lock prefix"></i>
+                                                    <input type="password" id="modalLRInput14"
+                                                           class="form-control form-control-sm validate">
+                                                    <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat
+                                                        password</label>
+                                                </div>
+
+                                                <div class="text-center form-sm mt-2">
+                                                    <button class="btn btn-info">Sign up <i
+                                                            class="fas fa-sign-in ml-1"></i></button>
+                                                </div>
+
+                                            </div>
+                                            <!--Footer-->
+                                            <div class="modal-footer">
+                                                <div class="options text-right">
+                                                    <p class="pt-1">Already have an account? <a href="#"
+                                                                                                class="blue-text">Log
+                                                        In</a></p>
+                                                </div>
+                                                <button type="button" class="btn btn-outline-info waves-effect ml-auto"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--/.Panel 8-->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--/.Content-->
+                        </div>
+                    </div>
+                    <!--Modal: Login / Register Form-->
+
+
+                    <div class="text-center">
+                        <!--  MAKE POST BUTTON -->
+                        <a href="/listings/add" class="btn btn-danger">MAKE A LISTINGS</a>
+
+                        <a href="#" class="btn btn-default btn-rounded my-3" data-toggle="modal"
+                           data-target="#modalLRForm">LogIn/Register</a>
+                    </div>
+                    <!-- REGISTRATION MODAL END -->
+
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+
+</div>
+
+
+<div class="container">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card card-signin my-4">
+                        <div class="card-body">
+                            <br>
+                            <h1 class="card-title" style="color: #17a2b8"><span
+                                    style="font-size: 172%; ">Dashboard</span></h1>
+                            <hr style="background-color: #9575cd">
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active show" style="color: burlywood" data-toggle="tab"
+                                       href="#home">MESSAGES</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: burlywood" data-toggle="tab" href="#menu1">LISTINGS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: burlywood" data-toggle="tab"
+                                       href="#menu2">SETTINGS</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+
+                            <div class="tab-content bg-light">
+
+                                <!-- MESSAGES TAB -->
+                                <div id="home" class="container tab-pane active show"><br>
+                                    <h1 class="card-title" style="color: bisque"><span style="font-size: 172%; ">Welcome, Person</span>
+                                    </h1>
+                                    <h5 class="card-title"><strong>Here are your messages:</strong></h5>
+                                    <br>
+                                    <div class="table-responsive-lg">
+                                        <table class="table" >
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" onclick="">Listings
+                                                        </th>
+                                                <th scope="col" onclick="">FROM
+                                                        </th>
+                                                <th scope="col">Read</th>
+                                                <th scope="col">Remove</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- LISTINGS TAB -->
+                                <div id="menu1" class="container tab-pane fade"><br>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <p class="h2" style="color:indigo">My Listings</p>
+                                            </div>
+                                            <div class="col">
+                                                <div class="text-left">
+                                                    <a href="" class="btn btn-success btn-raised">Add
+                                                        Listings</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive-lg">
+                                        <table class="table table-bordered">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Listings</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Edit</th>
+                                                <th scope="col">Remove</th>
+                                            </tr>
+                                            </thead>
+
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!--SETTINGS TAB -->
+                                <div id="menu2" class="container tab-pane fade"><br>
+                                    <h2>Change Settings</h2>
+                                    <div class="container-fluid">
+                                        <br>
+                                        <p class="h2" style="color:indigo">Update Profile Picture</p>
+                                        <hr style="background-color: #9575cd">
+
+                                        <form class="form-signin form-group" method="POST"
+                                              action="" enctype="multipart/form-data">
+                                            <img src="images/noprofile.jpg" alt="profilePic" width="256">
+                                            <br><br>
+                                            <!-- Item Photo-->
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <div class="custom-file">
+                                                        <input id="logo" type="file" name="image" accept="image/*"
+                                                               class="custom-file-input" style="border: 1px"
+                                                               required="">
+                                                        <label for="logo" class="custom-file-label text-truncate">Choose
+                                                            file...</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Submit SignUp Form-->
+                                            <button class="btn btn-md btn-success btn-raised" type="submit"
+                                                    id="create_account"
+                                                    style="color: white; background-color: #9575cd; border-color: #9575cd; ">
+                                                Update Profile Picture
+                                            </button>
+                                        </form>
+                                        <br><br>
+
+                                        <form class="form-horizontal" action="" method="post">
+
+                                            <div class="row">
+                                                <p class="h2" style="color:indigo">Update Password</p>
+                                                <hr style="background-color: #9575cd">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <br>
+                                                        <label for="form_password">Change Password
+                                                            <small>(8 character minimum) *</small>
+                                                        </label>
+                                                        <input id="form_password" type="password" name="password"
+                                                               class="form-control"
+                                                               placeholder="Please Enter Your Password" maxlength="40"
+                                                               pattern="^[A-Za-z0-9 ]*$"
+                                                               title="Alphanumeric Characters Only" required="required">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label for="form_confirm_password">Confirm Password *</label>
+                                                        <input id="form_confirm_password" type="password"
+                                                               name="confirmpassword" class="form-control"
+                                                               placeholder="Please Re-Enter Your Password"
+                                                               maxlength="40" pattern="^[A-Za-z0-9 ]*$"
+                                                               title="Alphanumeric Characters Only" required="required">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                    <button class="btn btn-md btn-success btn-raised" formmethod="post"
+                                                            type="submit"
+                                                            style="color: white; background-color: #9575cd; border-color: #9575cd; ">
+                                                        Update Password
+                                                    </button>
+                                                </div>
+                                                <input type="hidden" id="user_id" name="user_id" value="13">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--closes tab content from messages tab-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </div>
+</div>
+
+
+</body>
+
+
+</html>
