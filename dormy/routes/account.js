@@ -7,6 +7,10 @@ const router = express.Router();
 // account routes
 router.get('/', isLoggedIn, accountController.dashboard);
 router.get('/listings', isLoggedIn, accountController.listings);
+router.get('/listings/:id', isLoggedIn, accountController.listingDetail);
+router.get('/booked', isLoggedIn, accountController.booked);
+router.get('/inbox', isLoggedIn, accountController.inbox);
+router.get('/inbox/:id', isLoggedIn, accountController.inboxMessage);
 
 // login, register, logout routes
 router.get('/login', accountController.login);

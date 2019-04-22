@@ -1,13 +1,29 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/database');
 
+// basic account controllers
 module.exports.dashboard = (req, res) => {
     res.render('account/dashboard');
 };
 
 module.exports.listings = (req, res) => {
-    db.any(``)
     res.render('account/user-listings');
+};
+
+module.exports.listingDetail = (req, res) => {
+    res.render('account/user-listing-detail');
+};
+
+module.exports.booked = (req, res) => {
+    res.render('account/booked.html');
+};
+
+module.exports.inbox = (req, res) => {
+    res.render('account/inbox.html')
+}
+
+module.exports.inboxMessage = (req, res) => {
+    res.render('account/message-detail.html');
 };
 
 

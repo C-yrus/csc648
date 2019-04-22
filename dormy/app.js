@@ -9,6 +9,7 @@ const session = require('express-session');
 
 const accountRouter = require('./routes/account');
 const listingRouter = require('./routes/listings');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use(passport.session());
 app.get('/', (req, res) => res.render('index'));
 app.use('/account', accountRouter);
 app.use('/listings', listingRouter);
+app.use('/admin', adminRouter);
 
 // if it made it here then an error occurred, throw 500 error
 app.use((req, res, next) => next(createError(500)));
