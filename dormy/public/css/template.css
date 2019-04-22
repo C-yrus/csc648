@@ -202,7 +202,7 @@ footer {
 
 }
 
-/* .bot {
-    color: red;
-    border: 5px dashed purple;
-} */
+/* IMAGE on home page */
+.card__image{
+    border-radius: 3%;
+}
