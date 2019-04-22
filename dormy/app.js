@@ -4,7 +4,12 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 const nunjucks = require('nunjucks');
+const passport = require('./config/passport');
+const session = require('express-session');
+
+const accountRouter = require('./routes/account');
 const listingRouter = require('./routes/listings');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
@@ -20,7 +25,7 @@ app.set('view engine', 'html');
 // logger for outputs to console
 app.use(logger('dev'));
 
-// middleware used populate body request property; (express.json())
+// middleware used to populate body request property; (req.body)
 // other middleware for encoding and cookies
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -29,12 +34,20 @@ app.use(cookieParser());
 // static file setup (images, css, frontend javascript)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(express.static('public'));
+// sessions & passport config
+app.use(session({
+    secret: 'SUPERSECRETKEYUSED4SESSIONTOKENGENERATION',
+    resave: true,
+    saveUninitialized: true,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // routes
 app.get('/', (req, res) => res.render('index'));
-app.get('/individualListing.html', (req, res) => res.render('individualListing'));
+app.use('/account', accountRouter);
 app.use('/listings', listingRouter);
+app.use('/admin', adminRouter);
 
 // if it made it here then an error occurred, throw 500 error
 app.use((req, res, next) => next(createError(500)));
