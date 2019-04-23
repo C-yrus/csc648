@@ -18,6 +18,20 @@
 
   <div class="zone blue grid-wrapper" >
 
+  {% for listing in listings %}
+    <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+      <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+        <h5 class="text-center" class="card-title">{{ listing.title }}</h5>
+          <img class="card__image" class="card bg-light mb-3" alt="Car" class="card bg-light mb-3" alt="Car" src="/thumbnails/{{listing.thumbnail}}">
+      </a>
+    </div>
+  {% else %}
+    <p>No listings found...</p>
+  {% endfor %}
+
+
+
+
     <!-- CARD 1 -->
     <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
       <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">

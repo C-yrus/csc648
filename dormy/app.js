@@ -6,6 +6,7 @@ const createError = require('http-errors');
 const nunjucks = require('nunjucks');
 const passport = require('./config/passport');
 const session = require('express-session');
+const db = require('./config/database');
 
 const accountRouter = require('./routes/account');
 const listingRouter = require('./routes/listings');
@@ -44,7 +45,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
-app.get('/', (req, res) => res.render('index'));
+app.get('/', (req, res) => {
+    db.any(`SELECT * FROM listings ORDER BY id DESC`)
+    .then(data => res.render('index', {
+        listings: data
+    }))
+    .catch(err => createError(500));
+});
 app.use('/account', accountRouter);
 app.use('/listings', listingRouter);
 app.use('/admin', adminRouter);
