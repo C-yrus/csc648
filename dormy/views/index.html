@@ -16,86 +16,48 @@
 <body>
   {% include "layouts/homepageNav.html" %}
 
-  <div class="zone blue grid-wrapper" >
+  <!-- <div class="zone blue grid-wrapper" > -->
 
-  {% for listing in listings %}
-    <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
-      <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
-        <h5 class="text-center" class="card-title">{{ listing.title }}</h5>
-          <img class="card__image" class="card bg-light mb-3" alt="Car" class="card bg-light mb-3" alt="Car" src="/thumbnails/{{listing.thumbnail}}">
-      </a>
-    </div>
-  {% else %}
-    <p>No listings found...</p>
-  {% endfor %}
-
-
-
-
-    <!-- CARD 1 -->
-    <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
-      <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
-        <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
-          <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
-      </a>
-    </div>
-
-    <!-- CARD 2 -->
-    <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+    <!-- {% for listing in listings %}
+      <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
         <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
-          <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
-            <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
+          <h5 class="text-center" class="card-title">{{ listing.title }}</h5>
+            <img class="card__image" class="card bg-light mb-3" alt="Car" style= "max-width: 100%" style="max-height: 100%"   src="/thumbnails/{{listing.thumbnail}}">
         </a>
-    </div>
-
-    <!-- CARD 3 -->
-    <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
-        <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
-          <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
-            <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
-        </a>
-    </div>
-    <!-- CARD 4 -->
-    <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
-        <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
-          <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
-            <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
-        </a>
-    </div>
-
-    <!-- CARD 5 -->
-    <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
-        <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
-          <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
-            <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
-        </a>
-    </div>
-
-    <!-- CARD 6 -->
-    <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
-        <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
-          <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
-            <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
-        </a>
-    </div>
-    
-
-    <!-- <div class="box">
-      <div class="grid-wrappers" >
-
       </div>
-      <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
-      <img  src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
-    </div> -->
-    <!-- <div class="box zone"><img src="./img/server_2_2.png">
+    {% else %}
+      <p>No listings found...</p>
+    {% endfor %} -->
+
+    <!-- {% for listing in listings %}
+    <div class="responsive">
+      <div class="gallery">
+        <a target="_blank" href="img_5terre.jpg">
+          <img src="/thumbnails/{{listing.thumbnail}}" alt="Cinque Terre">
+        </a>
+        <div class="desc">Add a description of the image here</div>
+      </div>
     </div>
-    <div class="box zone"><img src="./img/monitor_settings_2.png"></div>
-    <div class="box zone"><img src="./img/server_3.png"></div>
-    <div class="box zone"><img src="./img/data_storage_2_2.png"></div>
-    <div class="box zone"><img src="./img/monitor_coding_2.png"></div> -->
-  </div>
+    {% else %}
+      <p>No listings found...</p>
+    {% endfor %} -->
+
+    <div class="zone blue grid-wrapper" >
+
+        {% for listing in listings %}
+          <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+            <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+              <h5 class="text-center" class="card-title">{{ listing.title }}</h5>
+                <img class="card__image" class="card bg-light mb-3" alt="Car" style= "max-width: 100%" style="max-height: 100%"   src="/thumbnails/{{listing.thumbnail}}">
+            </a>
+          </div>
+        {% else %}
+          <p>No listings found...</p>
+        {% endfor %}
+    </div>
+<!-- 
+  </div> -->
   {% include "layouts/footer.html" %}
-</div>
  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
