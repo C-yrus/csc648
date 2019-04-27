@@ -30,6 +30,7 @@
                 </form>
             </li>
             <li class="makeAP">
+
                 <!-- REGISTER -->
                 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                     aria-hidden="true">
@@ -44,47 +45,46 @@
                 
                             <div class="modal-body mx-3">
                                 <form method="POST" action="/account/register">
+                                    <!-- First NAME -->
+                                    <div class="md-form mb-4">
+                                            <i class="fas fa-lock prefix grey-text"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">First Name</label>
+                                            <input type="text" name="first_name" id="defaultForm-pass" class="form-control validate" maxlength="15" title="less than 15 characters long." required>
+                                    </div>
 
-                                <!-- NAME -->
-                                <div class="md-form mb-4">
-                                        <i class="fas fa-lock prefix grey-text"></i>
-                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
-                                        <input type="password" id="defaultForm-pass" class="form-control validate">
-                                </div>
+                                    <!-- LAST NAME -->
+                                    <div class="md-form mb-4">
+                                            <i class="fas fa-lock prefix grey-text"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Last name</label>
+                                            <input type="text" name="last_name" id="defaultForm-pass" class="form-control validate" maxlength="15" title="less than 15 characters long."  required>
+                                    </div>
 
-                                <!-- LAST NAME -->
-                                <div class="md-form mb-4">
-                                        <i class="fas fa-lock prefix grey-text"></i>
-                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Last name</label>
-                                        <input type="password" id="defaultForm-pass" class="form-control validate">
-                                </div>
+                                    <!-- EMAIL -->
+                                    <div class="md-form mb-5">
+                                            <i class="fas fa-envelope prefix grey-text"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                                            <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
 
-                                <!-- Phone Number-->
-                                <div class="md-form mb-4">
-                                        <i class="fas fa-lock prefix grey-text"></i>
-                                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Phone number</label>
-                                        <input type="password" id="defaultForm-pass" class="form-control validate">
-                                </div>
+                                    <!-- PASSWORD -->
+                                    <div class="md-form mb-4">
+                                            <i class="fas fa-lock prefix grey-text"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" pattern=".{8,20}" title="Must be 8-20 characters long." required>
+                                            <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>                         
+                                        </div>
 
-                                <!-- EMAIL -->
-                                <div class="md-form mb-5">
-                                    <i class="fas fa-envelope prefix grey-text"></i>
-                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
-                                    <input name="first" type="email" id="defaultForm-email" class="form-control validate">
-                                    
-                                </div>
-
-                                <div class="md-form mb-4">
-                                    <i class="fas fa-lock prefix grey-text"></i>
-                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                                    <input type="password" id="defaultForm-pass" class="form-control validate">                          
-                                </div>
-
-                            </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                                <button class="btn btn-default">Register Now!</button>
-                            </div>
-                        </form>
+                                    <!-- Phone Number-->
+                                    <div class="md-form mb-4">
+                                            <i class="fas fa-lock prefix grey-text"></i>
+                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Phone number</label>
+                                            <input type="phone" name="phone" id="defaultForm-pass" class="form-control validate"  pattern=".{,10}" title="Phone number must be 10 digits." required>
+                                    </div>
+                                
+                                    <div class="modal-footer d-flex justify-content-center">
+                                    <button class="btn btn-success">Register Now!</button>
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -106,23 +106,25 @@
                             </button>
                         </div>
                         <div class="modal-body mx-3">
-                            <form method="POST" action="/account/login">
+                            <form method="POST" action="/account/login" >
                                 <div class="md-form mb-5">
-                                    <i class="fas fa-envelope prefix grey-text"></i>
-                                    <input type="email" name="email" id="defaultForm-email" class="form-control validate">
-                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your
-                                        email</label>
+                                    <!-- <i class="fas fa-envelope prefix grey-text"></i> -->
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                                    <!-- <input type="email" name="email" id="defaultForm-email" class="form-control validate"> -->
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                                    <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
                                 </div>
 
-                                <div class="md-form mb-4">
-                                    <i class="fas fa-lock prefix grey-text"></i>
-                                    <input type="password" name="password" id="defaultForm-pass" class="form-control validate">
-                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your
-                                        password</label>
+                                <div class="md-form mb-5">
+                                    <!-- <i class="fas fa-lock prefix grey-text"></i> -->
+                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                                    <!-- <input type="password" name="password" id="defaultForm-pass" class="form-control validate"> -->
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" pattern=".{8,20}" title="Must be 8-20 characters long." required>
+                                    <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>  
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-default">Login</button>
-                                    </div>
+                                    <button type="submit" class="btn btn-success">Login</button>
+                                </div>
                             </form>
                         </div>
                     </div>
