@@ -1,80 +1,95 @@
+
+<!-- RESPONSIVE HOMEPAGE -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/template.css">
+  <title>Layout Master</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="../css/template.css">
+ 
 </head>
-
-{% include "layouts/homepageNav.html" %}
-
 <body>
+  {% include "layouts/homepageNav.html" %}
 
-<!-- SECTION -->
-<div class="col-md-3">
-    <h4 class="title">Search result: {{ qCount }}</h4>
-</div>
+  <!-- <div class="zone blue grid-wrapper" > -->
 
-
-<br />
-<!-- Search filter -->
-
-<form class="form-inline my-2 my-lg-0" action="/listings" class="search_form" id="search_form">
-        <div class="col-md-3">
-            <h3>Distance From SFSU: </h3>
-            <button  name="type" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                <option value="">2 miles</option> </button>
-            <button name="type" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                <option value="apartment">4 miles</option>
-            </button>
-            <button  name="type" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                <option value="house">6 miles or above</option>
-            </button>
-        </div>
-</form>
-<!-- End Search Filter -->
-
-
-<!-- Listing loop -->
-{% for listing in listings %}
-
-<div class=" offset-md-2 zone grid-wrapper position-relative">
-    <div  href="/individualListing.html">
-        <a href="/individualListing.html">
-            <img class="image" src="../thumbnails/{{listing.thumbnail}}" width="430px" height="285px"  alt="{{listing.title}}"/>
+    <!-- {% for listing in listings %}
+      <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+        <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+          <h5 class="text-center" class="card-title">{{ listing.title }}</h5>
+            <img class="card__image" class="card bg-light mb-3" alt="Car" style= "max-width: 100%" style="max-height: 100%"   src="/thumbnails/{{listing.thumbnail}}">
         </a>
-       </div>
-    <div class="d-lg-block text-lg-center" style="color: #0b0b0b; font-size: 16px;">
-        <div class="border-left-0 text-left font-weight-bold">
-            <tr>
-                <ul>Type: {{ listing.type }}</ul>
-                <ul>Title: {{ listing.title }}</ul>
-                <ul>Address: {{ listing.address }}</ul>
-                <ul>Beds: {{ listing.beds }}</ul>
-                <ul>Baths: {{ listing.baths }}</ul>
-                <ul>Rent: ${{ listing.rent }}/month</ul>
-                <ul>Distance from SFSU: {{ listing.distance }} miles</ul>
-                <!--<li>Added: {{ listing.created }}</li>-->
-            </tr>
-        </div>
+      </div>
+    {% else %}
+      <p>No listings found...</p>
+    {% endfor %} -->
+
+    <!-- {% for listing in listings %}
+    <div class="responsive">
+      <div class="gallery">
+        <a target="_blank" href="img_5terre.jpg">
+          <img src="/thumbnails/{{listing.thumbnail}}" alt="Cinque Terre">
+        </a>
+        <div class="desc">Add a description of the image here</div>
+      </div>
     </div>
-</div>
-<br />
-{% else %}
-<li>No listings available...</li>
-{% endfor %}
-
-<!-- End Listing Loop -->
-
-{% include "layouts/footer.html" %}
-
-<!-- END-SECTION -->
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% else %}
+      <p>No listings found...</p>
+    {% endfor %} -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort by:
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Price</button>
+            <button class="dropdown-item" type="button">Distance</button>
+            <button class="dropdown-item" type="button">Newest</button>
+          </div>
+        </div>
+        <div class="zone blue grid-wrapper" >
+          {% for listing in listings %}
+            <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+              <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+                <h5 class="top-tittle">{{ listing.title }}</h5>
+                  <img class="card__images" class="card bg-light mb-3" alt="Car" style= "max-width: 100%" style="max-height: 100%"   src="/thumbnails/{{listing.thumbnail}}">
+                <h6 class="price">${{ listing.rent }}/Mo </h6>
+                
+                <h6 class="address">Address: {{ listing.address }}</h6>
+                <h6 class="card-title"></h6>
+                <h6 class="type-item">Type: {{ listing.type }}</h6>
+                
+              </a>
+            </div>
+          {% else %}
+            <p>No listings found...</p>
+          {% endfor %}
+        </div>
+        <!-- PAGING -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+<!-- 
+  </div> -->
+  {% include "layouts/footer.html" %}
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 </html>
-
-
