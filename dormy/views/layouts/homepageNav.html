@@ -44,46 +44,49 @@
                             </div>
                 
                             <div class="modal-body mx-3">
-                                <form method="POST" action="/account/register">
-                                    <!-- First NAME -->
-                                    <div class="md-form mb-4">
-                                            <i class="fas fa-lock prefix grey-text"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">First Name</label>
-                                            <input type="text" name="first_name" id="defaultForm-pass" class="form-control validate" maxlength="15" title="less than 15 characters long." required>
-                                    </div>
+                                    <form method="POST" action="/account/register">
 
-                                    <!-- LAST NAME -->
-                                    <div class="md-form mb-4">
-                                            <i class="fas fa-lock prefix grey-text"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Last name</label>
-                                            <input type="text" name="last_name" id="defaultForm-pass" class="form-control validate" maxlength="15" title="less than 15 characters long."  required>
-                                    </div>
-
-                                    <!-- EMAIL -->
-                                    <div class="md-form mb-5">
-                                            <i class="fas fa-envelope prefix grey-text"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
-                                            <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
-
-                                    <!-- PASSWORD -->
-                                    <div class="md-form mb-4">
-                                            <i class="fas fa-lock prefix grey-text"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" pattern=".{8,20}" title="Must be 8-20 characters long." required>
-                                            <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>                         
+                                        <!-- NAME -->
+                                        <div class="md-form mb-4">
+                                                <i class="fas fa-lock prefix grey-text"></i>
+                                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+                                                <input type="text" name="first_name" id="defaultForm-pass" class="form-control validate" maxlength="15" placeholder="First Name" required>
+                                        </div>
+        
+                                        <!-- LAST NAME -->
+                                        <div class="md-form mb-4">
+                                                <i class="fas fa-lock prefix grey-text"></i>
+                                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Last Name</label>
+                                                <input type="text" name="last_name"  id="defaultForm-pass" class="form-control validate" maxlength="15"  placeholder="Last Name"required>
                                         </div>
 
-                                    <!-- Phone Number-->
-                                    <div class="md-form mb-4">
-                                            <i class="fas fa-lock prefix grey-text"></i>
-                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">Phone number</label>
-                                            <input type="phone" name="phone" id="defaultForm-pass" class="form-control validate"  pattern=".{,10}" title="Phone number must be 10 digits." required>
+                                        <!-- EMAIL -->
+                                        <div class="md-form mb-5">
+                                                <i class="fas fa-envelope prefix grey-text"></i>
+                                                <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
+                                                <input name="email" name="email" type="email" id="defaultForm-email" class="form-control validate" placeholder="Enter email" required>
+                                                <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
+                                        </div>
+
+                                        <!-- Password -->
+                                        <div class="md-form mb-4">
+                                                <i class="fas fa-lock prefix grey-text"></i>
+                                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                                                <input type="password" name="password"  id="defaultForm-pass" class="form-control validate" pattern=".{8,20}" title="Must be 8-20 characters long." placeholder="Password" required> 
+                                                <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>                           
+                                        </div>
+        
+                                        <!-- Phone Number-->
+                                        <div class="md-form mb-4">
+                                                <i class="fas fa-lock prefix grey-text"></i>
+                                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Phone number</label>
+                                                <input type="tel" name="phone"  id="defaultForm-pass" class="form-control validate" pattern="^\d{3}-\d{3}-\d{4}$" title="Format: XXX-XXX-XXXX" placeholder="Phone Number" required>
+                                                <small id="passwordHelpInline" class="text-muted">Phone number must be 10 digits.</small>
+                                        </div>
                                     </div>
-                                
                                     <div class="modal-footer d-flex justify-content-center">
-                                    <button class="btn btn-success">Register Now!</button>
+                                        <button class="btn btn-success">Register Now!</button>
+                                    </div>
                                 </form>
                         </div>
                     </div>
@@ -108,19 +111,16 @@
                         <div class="modal-body mx-3">
                             <form method="POST" action="/account/login" >
                                 <div class="md-form mb-5">
-                                    <!-- <i class="fas fa-envelope prefix grey-text"></i> -->
-                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                                    <!-- <input type="email" name="email" id="defaultForm-email" class="form-control validate"> -->
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
-                                    <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
+                                    <input type="email" name="email" id="defaultForm-email" class="form-control validate" class="form-control validate" placeholder="Enter email" required>
                                 </div>
-
-                                <div class="md-form mb-5">
-                                    <!-- <i class="fas fa-lock prefix grey-text"></i> -->
-                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                                    <!-- <input type="password" name="password" id="defaultForm-pass" class="form-control validate"> -->
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" pattern=".{8,20}" title="Must be 8-20 characters long." required>
-                                    <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>  
+    
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-lock prefix grey-text"></i>
+                                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
+                                    <input type="password" name="password" id="defaultForm-pass" class="form-control validate" class="form-control validate" pattern=".{8,20}" title="Must be 8-20 characters long." placeholder="Password" required>
+                                    <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>   
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
                                     <button type="submit" class="btn btn-success">Login</button>
@@ -131,7 +131,6 @@
                 </div>
             </div>
             <!-- /LOGIN -->
-
 
             <li>
                 <a class="btn btn-outline-warning" href="#" data-toggle="modal"
