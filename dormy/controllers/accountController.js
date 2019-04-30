@@ -55,7 +55,7 @@ module.exports.newUser = (req, res) => {
                 });
         })
         .catch(err => {
-
+            console.log(`Error hashing password: ${err}`);
         });
 };
 
