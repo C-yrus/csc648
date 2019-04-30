@@ -59,8 +59,4 @@ app.use('/admin', adminRouter);
 // if it made it here then an error occurred, throw 500 error
 app.use((req, res, next) => next(createError(500)));
 
-app.get('/css/*', function(req, res){
-    res.sendFile(__dirname + '/css/styles.css')
-});
-
 app.listen(3000, () => console.log(`Express running at http://localhost:3000`));

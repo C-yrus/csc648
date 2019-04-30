@@ -15,10 +15,9 @@ module.exports.list = (req, res) => {
     }
     db.any(q)
         .then(data => {
-            res.render('listings', {
+            res.render('listings/list', {
                 listings: data,
                 qCount: data.length,
-
             });
         })
         .catch(err => res.send(`Error retrieving listings; ${err}`));
@@ -29,7 +28,7 @@ module.exports.list = (req, res) => {
 module.exports.detail = (req, res) => {
     db.one(`SELECT * FROM listings WHERE id = ${req.params.id}`)
     .then(data => {
-        res.render('detail', {
+        res.render('listings/detail', {
             listing: data,
         });
     })
