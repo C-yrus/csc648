@@ -23,4 +23,32 @@
     margin-left: -15px;
 }
 
+/***********************************************
+category (form) 
+************************************************/
+
+/* Categories*/
+.input-select {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-right: 10px;
+    border-radius: 1px;
+    border-width: 3px;
+    height: 33px;
+    border-color: #e6e6e6;
+}
+
+/* Search bar */
+.search-style{
+    background-color: #f8f9fa!important; 
+    border-left: black;
+    border-right: none;
+    border-top: none;
+    padding-right: 10px;
+    border-radius: 1px;
+    border-width: 3px;
+    height: 33px;
+}
+
 /* /Homepage */
