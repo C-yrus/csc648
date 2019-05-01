@@ -3,23 +3,111 @@
 {% block title %}Dormy - Apartment Rental Services for SFSU{% endblock title %}
 
 {% block content %}
-  <div class="container-fluid">
-    <div class="row-fluid">
-      {% for listing in listings %}
-        <div class="col-sm-4">
-          <div class="card-deck">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="/thumbnails/{{ listing.thumbnail }}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">{{ listing.title }}</h5>
-                <p class="card-text">card content</p>
-                <a href="/listings/{{ listing.id }}" class="btn btn-primary">View Detail</a>
-                <a href="#" class="btn btn-primary">Contact Landlord</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
+
+<!--<div class="container-fluid">-->
+    <!--<div class="row-fluid">-->
+    <!--{% for listing in listings %}-->
+    <!--<div class="bg-light mb-4 card-body" alt="Car" style="display: inline-grid; grid-column-gap: 50px"  >-->
+      <!--<a href="/Listings/{{listing.id}}" style="grid-row-end: auto">-->
+
+        <!--<h5 class="top-tittle">{{ listing.title }}</h5>-->
+
+        <!--<img class="card" alt="Car"  width="420px" height="285px"   src="/thumbnails/{{listing.thumbnail}}">-->
+          <!--<div class="card-body">-->
+          <!--<h6 class="price">${{ listing.rent }}/Mo </h6>-->
+          <!--<h6 class="address">Address: {{ listing.address }}</h6>-->
+          <!--<h6 class="type-item">Distance from SFSU: {{ listing.distance }} miles</h6>-->
+          <!--<h6 class="text-lg-right">{{ listing.type }}</h6>-->
+              <!--<br/>-->
+          <!--<div class="text-center">-->
+            <!--<a href="/listings/{{ listing.id }}" class="btn btn-primary">View Detail</a>-->
+            <!--<a href="#" class="btn btn-primary">Contact Landlord</a>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--{% else %}-->
+    <!--<p>No listings found...</p>-->
+    <!--{% endfor %}-->
+    <!--</div>-->
+<!--</div>-->
+
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-row-gap: 40px;
+        grid-column-gap: 30px;
+        /*background-color: #2196F3;*/
+        padding: 30px;
+    }
+
+    .grid-container > div {
+        /*background-color: rgba(255, 255, 255, 0.8);*/
+        text-align: center;
+        padding: 20px 0;
+        font-size: 30px;
+    }
+
+</style>
+
+<!-- SEARCH FILTER -->
+<div class="dropdown">
+    <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by:
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">Price</button>
+        <button class="dropdown-item" type="button">Distance</button>
+        <button class="dropdown-item" type="button">Newest</button>
     </div>
-  </div>
+
+    <div style="display: inline-block" class="offset-9 text-md-right">
+        <div class="text-black ">
+            <h6 class="title">Search result: {{ qCount }}</h6>
+        </div>
+    </div>
+</div>
+<!-- END FILTER -->
+
+<hr/>
+
+<!-- LISTING LOOP -->
+<div class="grid-container">
+            {% for listing in listings %}
+            <div class="zone col-lg">
+                <div class="card-deck">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="/thumbnails/{{ listing.thumbnail }}" style="width: 100%" width="420px" height="285px" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ listing.title }}</h5>
+                            <p class="card-text">${{ listing.rent }}/month</p>
+                            <a href="/listings/{{ listing.id }}" class="btn btn-primary">View Detail</a>
+                            <a href="#" class="btn btn-primary">Contact Landlord</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+</div>
+<!-- END LISTING -->
+
+
+<!-- PAGING -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+<!-- End PAGEING -->
+
 {% endblock content %}
+
