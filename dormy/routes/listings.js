@@ -6,7 +6,11 @@ const router = express.Router();
 
 router.get('/', listingsController.list);
 router.post('/', upload.single('thumbnail'), listingsController.addNew);
-router.get('/add', listingsController.add);
+router.get('/add', isLoggedIn, listingsController.add);
 router.get('/:id', listingsController.detail);
+
+function isLoggedIn(req, res, next) {
+    return req.isAuthenticated() ? next() : res.redirect('/account/login');
+}
 
 module.exports = router;

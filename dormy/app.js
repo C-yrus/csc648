@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
     .then(data => res.render('index', {
         listings: data
     }))
-    .catch(err => createError(500));
+    .catch(() => createError(500));
 });
 app.use('/account', accountRouter);
 app.use('/listings', listingRouter);

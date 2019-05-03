@@ -1,27 +1,23 @@
-
+{% extends "layouts/base.html" %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-<link rel="stylesheet" href="/public/css/my-styles.css">
-<!-- Bootstrap CSS CDN -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<!-- Our Custom CSS -->
-<link rel="stylesheet" type="text/css" href="../css/style4.css">
+    <link rel="stylesheet" href="/css/style4.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/my-styles.css">
 {% endblock stylesheets %}
 
 {% block title %}Dashboard | Dormy{% endblock title %}
 
 {% block content %}
 <div class="container-fluid">
-    <h1 class="card-title" style="color: blue"><span style="font-size: 172%; ">Welcome, Person</span>
+    <h1 class="card-title"><span>Welcome, Person</span>
     </h1>
         <div class="wrapper">
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>USER DASHBOARD</h3>
-                    <strong>D</strong>
+                    <h3>DASHBOARD</h3>
                 </div>
 
                 <ul class="list-unstyled components nav flex-column" role="tablist">
@@ -104,7 +100,7 @@
 
                                     <form class="form-signin form-group" method="POST"
                                           action="" enctype="multipart/form-data">
-                                        <img src="images/noprofile.jpg" alt="profilePic" width="256">
+                                        <img src="/images/noprofile.jpg" alt="profilePic" width="256">
                                         <br><br>
                                         <!-- Item Photo-->
                                         <div class="col-sm-6">

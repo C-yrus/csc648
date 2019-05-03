@@ -1,37 +1,8 @@
 {% extends "layouts/base.html" %}
 
-{% block title %}Dormy - Apartment Rental Services for SFSU{% endblock title %}
+{% block title %}Listings | Dormy{% endblock title %}
 
 {% block content %}
-
-<!--<div class="container-fluid">-->
-    <!--<div class="row-fluid">-->
-    <!--{% for listing in listings %}-->
-    <!--<div class="bg-light mb-4 card-body" alt="Car" style="display: inline-grid; grid-column-gap: 50px"  >-->
-      <!--<a href="/Listings/{{listing.id}}" style="grid-row-end: auto">-->
-
-        <!--<h5 class="top-tittle">{{ listing.title }}</h5>-->
-
-        <!--<img class="card" alt="Car"  width="420px" height="285px"   src="/thumbnails/{{listing.thumbnail}}">-->
-          <!--<div class="card-body">-->
-          <!--<h6 class="price">${{ listing.rent }}/Mo </h6>-->
-          <!--<h6 class="address">Address: {{ listing.address }}</h6>-->
-          <!--<h6 class="type-item">Distance from SFSU: {{ listing.distance }} miles</h6>-->
-          <!--<h6 class="text-lg-right">{{ listing.type }}</h6>-->
-              <!--<br/>-->
-          <!--<div class="text-center">-->
-            <!--<a href="/listings/{{ listing.id }}" class="btn btn-primary">View Detail</a>-->
-            <!--<a href="#" class="btn btn-primary">Contact Landlord</a>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</a>-->
-    <!--</div>-->
-    <!--{% else %}-->
-    <!--<p>No listings found...</p>-->
-    <!--{% endfor %}-->
-    <!--</div>-->
-<!--</div>-->
-
 <style>
     .grid-container {
         display: grid;
@@ -64,7 +35,7 @@
 
     <div style="display: inline-block" class="offset-9 text-md-right">
         <div class="text-black ">
-            <h6 class="title">Search result: {{ qCount }}</h6>
+            <h6 class="title">Search Result: {{ qCount }}</h6>
         </div>
     </div>
 </div>
@@ -75,7 +46,9 @@
 <!-- LISTING LOOP -->
 <div class="album py-5 bg-light">
     <div class="container">
-      <div class="row">
+        <h4>Search Query - Type: {{ type if type else "None" }} | Keywords: {{ query if query else "None" }}</h4>
+        <br />
+        <div class="row">
         {% for listing in listings %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
@@ -85,8 +58,7 @@
               <p class="card-text">Apartment Description</p>
               <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View Detail</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Contact</button>
+                      <a href="/listings/{{listing.id}}"><button type="button"class="btn btn-sm btn-outline-secondary">View Detail</button></a>
                     </div>
               </div>
             </div>

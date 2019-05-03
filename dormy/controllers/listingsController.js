@@ -18,9 +18,11 @@ module.exports.list = (req, res) => {
             res.render('listings/list', {
                 listings: data,
                 qCount: data.length,
+                type: type,
+                query: query
             });
         })
-        .catch(err => res.send(`Error retrieving listings; ${err}`));
+        .catch(err => console.error(`Error fetching listings; ${err}`));
 };
 
 // controller for route: GET `/listings/:id`
