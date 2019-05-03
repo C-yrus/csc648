@@ -16,14 +16,15 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/account">Profile</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLoginForms">Login</a>
                     <div class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLoginForm">Register</div>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="/account/logout">Logout</a>
                 </div>
             </li>
         </ul>
-        <form class="form-inline" action="/listings" name="type">
+        <form class="form-inline" action="/listings">
             <select class="input-select" name="type">
                 <!-- Category default for all -->
                 <option value="">Categories...</option>
@@ -54,14 +55,14 @@
             </div>
 
             <div class="modal-body mx-3">
-                <form method="POST" action="/account/register">
+                <form method="POST" action="/account/register/">
 
                     <!-- NAME -->
                     <div class="md-form mb-4">
                         <i class="fas fa-lock prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
                         <input type="text" name="first_name" id="defaultForm-pass" class="form-control validate"
-                               maxlength="15" placeholder="First Name" required>
+                               maxlength="15" placeholder="First Name" autofocus required>
                     </div>
 
                     <!-- LAST NAME -->
@@ -126,14 +127,14 @@
                         <i class="fas fa-envelope prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
                         <input type="email" name="email" id="defaultForm-email" class="form-control validate"
-                               class="form-control validate" placeholder="Enter email" required>
+                               class="form-control validate" placeholder="Enter email" autofocus required>
                     </div>
 
                     <div class="md-form mb-4">
                         <i class="fas fa-lock prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
-                        <input type="password" name="password" id="defaultForm-pass" class="form-control validate"
-                               class="form-control validate" pattern=".{8,20}" title="Must be 8-20 characters long."
+                        <input type="password" name="password" id="defaultForm-pass" class="form-control"
+                               class="form-control validate" title="Must be 8-20 characters long."
                                placeholder="Password" required>
                         <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>
                     </div>

@@ -46,7 +46,7 @@
 <!-- LISTING LOOP -->
 <div class="album py-5 bg-light">
     <div class="container">
-        <h4>Search Query - Type: {{ type if type else "None" }} | Keywords: {{ query if query else "None" }}</h4>
+        <h4>Search Query - Listing <i>Type:</i> {{ type if type else "None" }} | <i>Keywords:</i> {{ query if query else "None" }}</h4>
         <br />
         <div class="row">
         {% for listing in listings %}

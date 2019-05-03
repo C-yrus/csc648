@@ -29,12 +29,12 @@ module.exports.list = (req, res) => {
 // `:id` is populated from the listing detail route in /routes/
 module.exports.detail = (req, res) => {
     db.one(`SELECT * FROM listings WHERE id = ${req.params.id}`)
-    .then(data => {
-        res.render('listings/detail', {
-            listing: data,
-        });
-    })
-    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
+        .then(data => {
+            res.render('listings/detail', {
+                listing: data,
+            });
+        })
+        .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 };
 
 // controller for route; GET `/listings/add`
@@ -46,12 +46,14 @@ module.exports.add = (req, res) => {
 // thumbnail upload is stored locally in /public/thumbnails/
 // faster than BLOB and much smaller size
 module.exports.addNew = (req, res) => {
-    db.one(`INSERT INTO listings(title, address, beds, baths, rent, distance, type, created, thumbnail) 
-            VALUES($1, $2, $3, $4, $5, $6, $7, now(), $8) RETURNING id`,
+    db.one(`INSERT INTO listings(title, address, beds, baths, rent, distance, 
+            type, created, user_id, thumbnail, description) 
+            VALUES($1, $2, $3, $4, $5, $6, $7, now(), $8, $9, $10) RETURNING id`,
         [req.body.title, req.body.address, req.body.beds, req.body.baths,
-            req.body.rent, req.body.distance, req.body.type, req.file.filename])
+            req.body.rent, req.body.distance, req.body.type, req.user.id,
+            req.file.filename, req.body.description])
         .then(() => {
-            res.redirect('/listings');
+            res.redirect('/account');
         })
         .catch(err => res.send(`Error creating listing; ${err}`));
 };

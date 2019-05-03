@@ -3,7 +3,9 @@ const db = require('../config/database');
 
 // basic account controllers
 module.exports.dashboard = (req, res) => {
-    res.render('account/dashboard');
+    res.render('account/dashboard', {
+        user: req.user
+    });
 };
 
 module.exports.listings = (req, res) => {
@@ -20,7 +22,7 @@ module.exports.booked = (req, res) => {
 
 module.exports.inbox = (req, res) => {
     res.render('account/inbox.html')
-}
+};
 
 module.exports.inboxMessage = (req, res) => {
     res.render('account/message-detail.html');
@@ -44,7 +46,7 @@ module.exports.newUser = (req, res) => {
                 [req.body.first_name, req.body.last_name, req.body.email, hashed,
                     req.body.phone])
                 .then(id => {
-                    res.render('account/register', {
+                    res.render('account/login', {
                         message: 'User created. You may now login.'
                     });
                 })
