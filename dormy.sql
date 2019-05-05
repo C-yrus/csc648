@@ -5,7 +5,7 @@
 -- Dumped from database version 10.7
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-04-04 21:56:44 PDT
+-- Started on 2019-05-04 20:46:46 PDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -37,7 +37,8 @@ CREATE TABLE public.listings (
     type text,
     created timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     user_id integer,
-    thumbnail text
+    thumbnail text,
+    description text
 );
 
 
@@ -60,7 +61,7 @@ CREATE SEQUENCE public.listings_id_seq
 ALTER TABLE public.listings_id_seq OWNER TO dormyuser;
 
 --
--- TOC entry 3172 (class 0 OID 0)
+-- TOC entry 3160 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: listings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dormyuser
 --
@@ -69,16 +70,17 @@ ALTER SEQUENCE public.listings_id_seq OWNED BY public.listings.id;
 
 
 --
--- TOC entry 201 (class 1259 OID 61087)
+-- TOC entry 201 (class 1259 OID 61390)
 -- Name: messages; Type: TABLE; Schema: public; Owner: dormyuser
 --
 
 CREATE TABLE public.messages (
     id integer NOT NULL,
-    content text,
-    created timestamp without time zone,
-    status text,
+    from_name text,
+    from_email text,
+    message text,
     listing_id integer,
+    created date,
     user_id integer
 );
 
@@ -86,7 +88,7 @@ CREATE TABLE public.messages (
 ALTER TABLE public.messages OWNER TO dormyuser;
 
 --
--- TOC entry 200 (class 1259 OID 61085)
+-- TOC entry 200 (class 1259 OID 61388)
 -- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: dormyuser
 --
 
@@ -102,53 +104,12 @@ CREATE SEQUENCE public.messages_id_seq
 ALTER TABLE public.messages_id_seq OWNER TO dormyuser;
 
 --
--- TOC entry 3173 (class 0 OID 0)
+-- TOC entry 3161 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dormyuser
 --
 
 ALTER SEQUENCE public.messages_id_seq OWNED BY public.messages.id;
-
-
---
--- TOC entry 203 (class 1259 OID 61108)
--- Name: responses; Type: TABLE; Schema: public; Owner: dormyuser
---
-
-CREATE TABLE public.responses (
-    id integer NOT NULL,
-    content text,
-    created timestamp without time zone,
-    message_id integer,
-    user_id integer
-);
-
-
-ALTER TABLE public.responses OWNER TO dormyuser;
-
---
--- TOC entry 202 (class 1259 OID 61106)
--- Name: responses_id_seq; Type: SEQUENCE; Schema: public; Owner: dormyuser
---
-
-CREATE SEQUENCE public.responses_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.responses_id_seq OWNER TO dormyuser;
-
---
--- TOC entry 3174 (class 0 OID 0)
--- Dependencies: 202
--- Name: responses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dormyuser
---
-
-ALTER SEQUENCE public.responses_id_seq OWNED BY public.responses.id;
 
 
 --
@@ -186,7 +147,7 @@ CREATE SEQUENCE public.users_id_seq
 ALTER TABLE public.users_id_seq OWNER TO dormyuser;
 
 --
--- TOC entry 3175 (class 0 OID 0)
+-- TOC entry 3162 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dormyuser
 --
@@ -195,7 +156,7 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- TOC entry 3020 (class 2604 OID 61063)
+-- TOC entry 3013 (class 2604 OID 61063)
 -- Name: listings id; Type: DEFAULT; Schema: public; Owner: dormyuser
 --
 
@@ -203,7 +164,7 @@ ALTER TABLE ONLY public.listings ALTER COLUMN id SET DEFAULT nextval('public.lis
 
 
 --
--- TOC entry 3023 (class 2604 OID 61090)
+-- TOC entry 3016 (class 2604 OID 61393)
 -- Name: messages id; Type: DEFAULT; Schema: public; Owner: dormyuser
 --
 
@@ -211,15 +172,7 @@ ALTER TABLE ONLY public.messages ALTER COLUMN id SET DEFAULT nextval('public.mes
 
 
 --
--- TOC entry 3024 (class 2604 OID 61111)
--- Name: responses id; Type: DEFAULT; Schema: public; Owner: dormyuser
---
-
-ALTER TABLE ONLY public.responses ALTER COLUMN id SET DEFAULT nextval('public.responses_id_seq'::regclass);
-
-
---
--- TOC entry 3022 (class 2604 OID 61074)
+-- TOC entry 3015 (class 2604 OID 61074)
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: dormyuser
 --
 
@@ -227,91 +180,67 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- TOC entry 3160 (class 0 OID 61060)
+-- TOC entry 3150 (class 0 OID 61060)
 -- Dependencies: 197
 -- Data for Name: listings; Type: TABLE DATA; Schema: public; Owner: dormyuser
 --
 
-COPY public.listings (id, title, address, beds, baths, rent, distance, type, created, user_id, thumbnail) FROM stdin;
-20	Apartment 1	Apartment 1	2	2	15	2	apartment	2019-04-04 21:36:12.221656	\N	thumbnail-1554438972204.png
-21	Apartment 2	Apartment 2	2	2	9030	5	apartment	2019-04-04 21:37:31.843497	\N	thumbnail-1554439051826.png
-22	Apartment 3	Apartment 3	3	3	15000	3	house	2019-04-04 21:38:03.329711	\N	thumbnail-1554439083302.png
-23	Apartment 4	Apartment 4	4	4	9000	1	apartment	2019-04-04 21:39:17.536579	\N	thumbnail-1554439157526.png
-24	Apartment 5	Apartment 5	9	9	90099	10	condo	2019-04-04 21:40:05.216074	\N	thumbnail-1554439205206.png
-25	Condo 1	Condo 1	7	7	712	1	condo	2019-04-04 21:40:57.419145	\N	thumbnail-1554439257410.png
-26	House 3	House 3	3	3	33	3	house	2019-04-04 21:43:33.311987	\N	thumbnail-1554439413301.png
-19	HOUSE	House address	5	5	15000	500	house	2019-04-04 17:43:30.684646	\N	thumbnail-1554425010670.png
+COPY public.listings (id, title, address, beds, baths, rent, distance, type, created, user_id, thumbnail, description) FROM stdin;
+34	Cozy House Near SFSU Campus!	440 Winston Drive, San Francisco, CA 94105	3	2	3900	\N	house	2019-05-02 19:58:52.679866	15	thumbnail-1556852332676.jpeg	This 3 bedroom, 2 bathroom house is perfect for students needing a place for the year. We can sign a minimum of 1 year lease. You can have up to 5 people in the unit. Please kindly contact me if you are interested.
+35	Small Studio Condo With 1 Bedroom and 1 Bath, Massive Living Rom	1234 Santa Rd, Los Altos, CA 94024	1	1	4500	\N	condo	2019-05-04 18:10:51.618131	15	thumbnail-1557018651561.jpeg	This place is great
 \.
 
 
 --
--- TOC entry 3164 (class 0 OID 61087)
+-- TOC entry 3154 (class 0 OID 61390)
 -- Dependencies: 201
 -- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: dormyuser
 --
 
-COPY public.messages (id, content, created, status, listing_id, user_id) FROM stdin;
+COPY public.messages (id, from_name, from_email, message, listing_id, created, user_id) FROM stdin;
 \.
 
 
 --
--- TOC entry 3166 (class 0 OID 61108)
--- Dependencies: 203
--- Data for Name: responses; Type: TABLE DATA; Schema: public; Owner: dormyuser
---
-
-COPY public.responses (id, content, created, message_id, user_id) FROM stdin;
-\.
-
-
---
--- TOC entry 3162 (class 0 OID 61071)
+-- TOC entry 3152 (class 0 OID 61071)
 -- Dependencies: 199
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: dormyuser
 --
 
 COPY public.users (id, first_name, last_name, email, password, phone, created) FROM stdin;
+15	Matt	Massoodi	m@m.com	$2b$10$eBeJuqanvE7jrhVk4KBInO7rmbzSJ/r0NqkHtN8sJO163ORhfEGgu	408-391-6592	2019-05-02 18:31:19.284113
 \.
 
 
 --
--- TOC entry 3176 (class 0 OID 0)
+-- TOC entry 3163 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dormyuser
 --
 
-SELECT pg_catalog.setval('public.listings_id_seq', 26, true);
+SELECT pg_catalog.setval('public.listings_id_seq', 35, true);
 
 
 --
--- TOC entry 3177 (class 0 OID 0)
+-- TOC entry 3164 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dormyuser
 --
 
-SELECT pg_catalog.setval('public.messages_id_seq', 1, false);
+SELECT pg_catalog.setval('public.messages_id_seq', 10, true);
 
 
 --
--- TOC entry 3178 (class 0 OID 0)
--- Dependencies: 202
--- Name: responses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dormyuser
---
-
-SELECT pg_catalog.setval('public.responses_id_seq', 1, false);
-
-
---
--- TOC entry 3179 (class 0 OID 0)
+-- TOC entry 3165 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dormyuser
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_id_seq', 15, true);
 
 
 --
--- TOC entry 3026 (class 2606 OID 61068)
+-- TOC entry 3018 (class 2606 OID 61068)
 -- Name: listings listings_pkey; Type: CONSTRAINT; Schema: public; Owner: dormyuser
 --
 
@@ -320,7 +249,7 @@ ALTER TABLE ONLY public.listings
 
 
 --
--- TOC entry 3030 (class 2606 OID 61095)
+-- TOC entry 3024 (class 2606 OID 61398)
 -- Name: messages messages_pkey; Type: CONSTRAINT; Schema: public; Owner: dormyuser
 --
 
@@ -329,16 +258,16 @@ ALTER TABLE ONLY public.messages
 
 
 --
--- TOC entry 3032 (class 2606 OID 61116)
--- Name: responses responses_pkey; Type: CONSTRAINT; Schema: public; Owner: dormyuser
+-- TOC entry 3020 (class 2606 OID 61283)
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: dormyuser
 --
 
-ALTER TABLE ONLY public.responses
-    ADD CONSTRAINT responses_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
 
 
 --
--- TOC entry 3028 (class 2606 OID 61079)
+-- TOC entry 3022 (class 2606 OID 61079)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: dormyuser
 --
 
@@ -347,7 +276,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3033 (class 2606 OID 61080)
+-- TOC entry 3025 (class 2606 OID 61080)
 -- Name: listings listings_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dormyuser
 --
 
@@ -356,7 +285,7 @@ ALTER TABLE ONLY public.listings
 
 
 --
--- TOC entry 3034 (class 2606 OID 61096)
+-- TOC entry 3026 (class 2606 OID 61399)
 -- Name: messages messages_listing_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dormyuser
 --
 
@@ -365,7 +294,7 @@ ALTER TABLE ONLY public.messages
 
 
 --
--- TOC entry 3035 (class 2606 OID 61101)
+-- TOC entry 3027 (class 2606 OID 61409)
 -- Name: messages messages_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dormyuser
 --
 
@@ -373,25 +302,7 @@ ALTER TABLE ONLY public.messages
     ADD CONSTRAINT messages_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
---
--- TOC entry 3036 (class 2606 OID 61117)
--- Name: responses responses_message_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dormyuser
---
-
-ALTER TABLE ONLY public.responses
-    ADD CONSTRAINT responses_message_id_fkey FOREIGN KEY (message_id) REFERENCES public.messages(id);
-
-
---
--- TOC entry 3037 (class 2606 OID 61122)
--- Name: responses responses_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dormyuser
---
-
-ALTER TABLE ONLY public.responses
-    ADD CONSTRAINT responses_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-
--- Completed on 2019-04-04 21:56:45 PDT
+-- Completed on 2019-05-04 20:46:47 PDT
 
 --
 -- PostgreSQL database dump complete
