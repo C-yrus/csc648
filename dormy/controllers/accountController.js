@@ -3,9 +3,20 @@ const db = require('../config/database');
 
 // basic account controllers
 module.exports.dashboard = (req, res) => {
-    res.render('account/dashboard', {
-        user: req.user
-    });
+    db.task('get-all', t => {
+        return t.batch([
+            t.any(`SELECT * FROM listings WHERE user_id = '${req.user.id}'`),
+            t.any(`SELECT * FROM messages WHERE user_id = '${req.user.id}'`),
+        ])
+    })
+        .then(data => {
+            res.render('account/dashboard', {
+                user: req.user,
+                listings: data[0],
+                messages: data[1]
+            });
+        })
+        .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 };
 
 module.exports.listings = (req, res) => {

@@ -28,7 +28,7 @@ module.exports.list = (req, res) => {
 // controller for route: GET `/listings/:id`
 // `:id` is populated from the listing detail route in /routes/
 module.exports.detail = (req, res) => {
-    db.one(`SELECT * FROM listings WHERE id = ${req.params.id}`)
+    db.one(`SELECT * FROM listings WHERE id = '${req.params.id}'`)
         .then(data => {
             res.render('listings/detail', {
                 listing: data,
@@ -56,4 +56,21 @@ module.exports.addNew = (req, res) => {
             res.redirect('/account');
         })
         .catch(err => res.send(`Error creating listing; ${err}`));
+};
+
+module.exports.addMessage = (req, res) => {
+    db.one(`SELECT * FROM listings WHERE id = '${req.params.id}'`)
+        .then(listing => {
+            db.one(`INSERT INTO messages(from_name, from_email, message, listing_id, created, user_id)
+            VALUES($1, $2, $3, $4, now(), $5) RETURNING id`,
+                [req.body.from_name, req.body.from_email, req.body.message, req.params.id, listing.user_id])
+                .then(() => {
+                    res.render('listings/detail', {
+                        listing: listing,
+                        message: `Message successfully sent!`
+                    });
+                })
+                .catch(err => res.send(`Error sending message...Try again: ${err}`));
+        })
+        .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 };
