@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="/css/my-styles.css">
     <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
     {% endblock stylesheets %}
+
+    <!-- Google map api styling -->
+    <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+              height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+              height: 350px;
+              margin: 0;
+              padding: 0;
+            }
+    </style>
 </head>
 <body>
 {% include "layouts/navigation.html" %}
@@ -22,6 +37,8 @@
 {% include "layouts/footer.html" %}
 
 {% block javascripts %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn8zKXtCFQQtOvw07ZJhqBazzr4pzn_Do&callback=initMap"
+    async defer></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

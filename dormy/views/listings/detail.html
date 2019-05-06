@@ -18,10 +18,32 @@
                 </div>
             </div>
         </div>
+
+        <!-- Displays map -->
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    google maps
+                        <div id="map"></div>
+                        <script>
+                          function initMap() {
+                            
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                              zoom: 13,
+                              center: {lat: 37.7219, lng: -122.4803}
+                            });
+                    
+                            var marker1 = new google.maps.Marker({
+                              position: {lat: 37.7219, lng: -122.4803},
+                              map: map,
+                            });
+
+                            var marker2 = new google.maps.Marker({
+                              position: {lat: 37.7219, lng: -122.4503},
+                              map: map,
+                              title: 'Hello World!'
+                            });
+                          }
+                        </script>
                 </div>
             </div>
         </div>
