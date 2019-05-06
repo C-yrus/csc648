@@ -13,8 +13,11 @@
             <div class="card">
                 <div class="card-body">
                     <!-- listing thumbnail -->
-                    <img src="/thumbnails/{{ listing.thumbnail }}" alt="{{ listing.title }}" height="400px"
-                         width="400px">
+                    <div>
+                        <img src="/thumbnails/{{ listing.thumbnail }}" alt="{{ listing.title }}" height="100%"
+                         width="100%">
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -36,7 +39,7 @@
                                   });
                                   var geocoder = new google.maps.Geocoder();
                           
-                                  geocodeAddress(geocoder, map);
+                                //   geocodeAddress(geocoder, map);
 
                                 }
                           
