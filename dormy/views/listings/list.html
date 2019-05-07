@@ -55,7 +55,18 @@
             <img class="card-img-top" src="/thumbnails/{{ listing.thumbnail }}" alt="Card image cap" width="100%" height="225" >
             <div class="card-body">
               <h5 class="card-title">{{ listing.title }}</h5>
-              <p class="card-text">Apartment Description</p>
+                            <p class="card-text">
+                                <i class="fas fa-home"></i> {{listing.address}}
+                            </p>
+                            <p class="card-text">
+                                <i class="fa fa-dollar-sign"></i> {{listing.rent}}/month
+                            </p>
+                            <p class="card-text">
+                                <i class="fa fa-bed"></i> {{listing.beds}} beds
+                            </p>
+                            <p class="card-text">
+                                <i class="fa fa-bath"></i> {{listing.baths}} baths
+                            </p>
               <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                       <a href="/listings/{{listing.id}}"><button type="button"class="btn btn-sm btn-outline-secondary">View Detail</button></a>

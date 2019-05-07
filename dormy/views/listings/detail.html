@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <!-- listing thumbnail -->
                     <div>
-                        <img src="/thumbnails/{{ listing.thumbnail }}" alt="{{ listing.title }}" height="100%"
+                        <img style="object-fit: contain" src="/thumbnails/{{ listing.thumbnail }}" alt="{{ listing.title }}" height="100%"
                          width="100%">
                     </div>
                     
@@ -27,8 +27,7 @@
             <div class="card">
                 <div class="card-body">
                         <div id="floating-panel" class="listing-description">
-                                <input id="address" type="hidden" value="{{ listing.address }}">
-                                <!-- <input id="submit" type="button" value="encode"> -->
+                            <input id="address" type="hidden" value="{{ listing.address }}">
                               </div>
                               <div id="map"></div>
                               <script>
@@ -39,24 +38,24 @@
                                   });
                                   var geocoder = new google.maps.Geocoder();
                           
-                                  geocodeAddress(geocoder, map);
+                                //   geocodeAddress(geocoder, map);
 
                                 }
                           
-                                function geocodeAddress(geocoder, resultsMap) {
-                                  var address = document.getElementById('address').value;
-                                  geocoder.geocode({'address': address}, function(results, status) {
-                                    if (status === 'OK') {
-                                      resultsMap.setCenter(results[0].geometry.location);
-                                      var marker = new google.maps.Marker({
-                                        map: resultsMap,
-                                        position: results[0].geometry.location
-                                      });
-                                    } else {
-                                      alert('Geocode was not successful for the following reason: ' + status);
-                                    }
-                                  });
-                                }
+                                // function geocodeAddress(geocoder, resultsMap) {
+                                //   var address = document.getElementById('address').value;
+                                //   geocoder.geocode({'address': address}, function(results, status) {
+                                //     if (status === 'OK') {
+                                //       resultsMap.setCenter(results[0].geometry.location);
+                                //       var marker = new google.maps.Marker({
+                                //         map: resultsMap,
+                                //         position: results[0].geometry.location
+                                //       });
+                                //     } else {
+                                //       alert('Geocode was not successful for the following reason: ' + status);
+                                //     }
+                                //   });
+                                // }
                               </script>
                 </div>
             </div>
@@ -68,13 +67,12 @@
                     <!-- Listing Details -->
                     <ul class="listing-description">
 
-                        <li>Type: {{ listing.type }}</li>
-                        <li>Title: {{ listing.title }}</li>
-                        <li>Beds: {{ listing.beds }}</li>
-                        <li>Baths: {{ listing.baths }}</li>
-                        <li>Rent: ${{ listing.rent }}/month</li>
-                        <li>Distance from SFSU: {{ listing.distance }} mile(s)</li>
-                        <li>Added: {{ listing.created }}</li>
+                        <h5 class="card-title">Details:</h5>
+                        <ul><i class="fas fa-home"></i> {{listing.address}}</ul>
+                        <ul><i class="fas fa-money-bill-alt"></i> {{listing.rent}}/month</ul>
+                        <ul><i class="fa fa-bed"></i> {{listing.beds}}</ul>
+                        <ul><i class="fa fa-bath"></i> {{listing.baths}}</ul>
+                        <ul><i class="fas fa-calendar-week"></i> {{listing.created}}</ul>
                     </ul>
                 </div>
 
@@ -84,7 +82,7 @@
             <div class="card">
                 <div class="card-body">
                     <!--landlord details (or something)-->
-                    <p>{{ listing.description }}</p>
+                    <p>Description: {{ listing.description }}</p>
 
                     <!-- start of modal code -->
                     <div class="container">
