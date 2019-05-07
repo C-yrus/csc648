@@ -42,6 +42,11 @@ module.exports.add = (req, res) => {
     res.render('add', {});
 };
 
+// controller for route; GET `/listings/distance`
+module.exports.distance = (req, res) => {
+    res.render('distance', {});
+};
+
 // controller for route; POST `/listings/add`
 // thumbnail upload is stored locally in /public/thumbnails/
 // faster than BLOB and much smaller size
