@@ -27,7 +27,7 @@
             <div class="card">
                 <div class="card-body">
                         <div id="floating-panel" class="listing-description">
-                                <input id="address"  value="{{ listing.address }}">
+                                <input id="address" type="hidden" value="{{ listing.address }}">
                                 <!-- <input id="submit" type="button" value="encode"> -->
                               </div>
                               <div id="map"></div>
@@ -39,7 +39,7 @@
                                   });
                                   var geocoder = new google.maps.Geocoder();
                           
-                                //   geocodeAddress(geocoder, map);
+                                  geocodeAddress(geocoder, map);
 
                                 }
                           
