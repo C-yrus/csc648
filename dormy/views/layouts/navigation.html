@@ -27,16 +27,15 @@
         </ul>
         <form class="form-inline" action="/listings">
             <select class="input-select" name="type">
-                <!-- Category default for all -->
                 <option value="">Categories...</option>
                 <option value="apartment">Apartments</option>
                 <option value="house">Houses</option>
                 <option value="condo">Condos</option>
             </select>
-
-            <input class="search-style" type="search" name="query" placeholder="Search"
-                   aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" style="border-radius: 10px" type="submit">Search
+            <input class="search-style" type="search + password" name="query" placeholder="Search"
+                   aria-label="Search" class="form-control validate" maxlength="40" pattern=".{5,40}" title="City, zip code 5-40 characters">
+            <button class="btn btn-outline-success my-3 my-sm-0" style="border-radius: 10px" 
+                type="submit">Search
             </button>
         </form>
     </div>
