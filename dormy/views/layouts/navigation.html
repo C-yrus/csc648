@@ -1,3 +1,5 @@
+
+
 <div style="background-color: red">SFSU Software Engineering Project CSC 648-848, Spring 2019.  For Demonstration Only</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand flaticon-hotel" href="/">Dormy</a>
@@ -26,16 +28,16 @@
             </li>
         </ul>
         <form class="form-inline" action="/listings">
-            <select class="input-select" name="type">
-                <option value="">Categories...</option>
+            <select class="input-select" name="type" id="name">
+                <option value="">{{type.charAt(0).toUpperCase() + type.slice(1) + 's' if type else 'Category..'}}</option>
                 <option value="apartment">Apartments</option>
                 <option value="house">Houses</option>
                 <option value="condo">Condos</option>
             </select>
-            <input class="search-style" type="search + password" name="query" placeholder="Search"
-                   aria-label="Search" class="form-control validate" maxlength="40" pattern=".{5,40}" title="City, zip code 5-40 characters">
+            <input class="search-style" type="search + password" name="query" value="{{query}}" placeholder="Search"
+                    aria-label="Search" class="form-control validate" maxlength="40" pattern=".{5,40}" title="City, zip code 5-40 characters">
             <button class="btn btn-outline-success my-3 my-sm-0" style="border-radius: 10px" 
-                type="submit">Search
+                type="submit" >Search
             </button>
         </form>
     </div>
