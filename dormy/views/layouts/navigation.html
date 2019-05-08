@@ -29,7 +29,8 @@
         </ul>
         <form class="form-inline" action="/listings">
             <select class="input-select" name="type" id="name">
-                <option value="">{{type.charAt(0).toUpperCase() + type.slice(1) + 's' if type else 'Category..'}}</option>
+                <option value="{{type}}">{{type.charAt(0).toUpperCase() + type.slice(1) + 's' if type else 'Category..'}}</option>
+                <option value="">All</option>
                 <option value="apartment">Apartments</option>
                 <option value="house">Houses</option>
                 <option value="condo">Condos</option>
