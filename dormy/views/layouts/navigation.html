@@ -1,19 +1,28 @@
+<!-- NAVIGATION.HTML BY ULISES MARTINEZ MORAN
+     NAV BAR TO STAY CONSISTENT THROUGH WEB PAGES
+     ALLOWS NAVIGATION THROUGH WEB PAGES SUCH AS LISTINGS AND POST A LISTING
+     CONTAINS DROP DOWN MENU FOR REGISTRATION AND LOGIN TAKING IN USERS LOGIN INFO
+     CONTAINS SEARCH BAR AND FILTER DROPDOWN CONSISTING OF: APARTMENT, HOUSE, AND CONDO,
+     ALLOWING USERS TO NARROW THE SCOPE OF THEIR SEARCH -->
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand flaticon-hotel" href="/">Dormy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
+    <!-- NAVIGATION BAR-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="/listings/">Listings</a></li>
             <li class="nav-item"><a class="nav-link" href="/listings/add">Post A Listing</a></li>
             <li class="nav-item dropdown">
+                <!-- DROPDOWN MENU -->
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Account
                 </a>
+                <!-- DROPDOWN MENU FOR USER REGISTRATION AND LOGIN -->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/account">Profile</a>
                     <div class="dropdown-divider"></div>
@@ -24,6 +33,7 @@
                 </div>
             </li>
         </ul>
+        <!-- SEARCH CATEGORY -->
         <form class="form-inline" action="/listings">
             <select class="input-select" name="type">
                 <!-- Category default for all -->
@@ -32,7 +42,7 @@
                 <option value="house">Houses</option>
                 <option value="condo">Condos</option>
             </select>
-
+            <!-- SEARCH INPUT -->
             <input class="search-style" type="search" name="query" placeholder="Search"
                    aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" style="border-radius: 10px" type="submit">Search
