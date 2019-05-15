@@ -5,16 +5,18 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
+    <!-- NAVIGATION BAR -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="/listings/">Listings</a></li>
             <li class="nav-item"><a class="nav-link" href="/listings/add">Post A Listing</a></li>
             <li class="nav-item dropdown">
+                <!-- DROPDOWN MENU -->
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Account
                 </a>
+                <!-- DROPDOWN MENU FOR USER REGISTRATION AND LOGIN -->
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/account">Profile</a>
                     <div class="dropdown-divider"></div>
@@ -25,6 +27,7 @@
                 </div>
             </li>
         </ul>
+        <!-- SEARCH CATEGORY -->
         <form class="form-inline" action="/listings">
             <select class="input-select" name="type">
                 <option value="">Categories...</option>
@@ -32,6 +35,7 @@
                 <option value="house">Houses</option>
                 <option value="condo">Condos</option>
             </select>
+            <!-- SEARCH INPUT -->
             <input class="search-style" type="search + password" name="query" placeholder="Search"
                    aria-label="Search" class="form-control validate" maxlength="40" pattern=".{5,40}" title="City, zip code 5-40 characters">
             <button class="btn btn-outline-success my-3 my-sm-0" style="border-radius: 10px" 
