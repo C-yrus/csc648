@@ -45,7 +45,60 @@
 
         <!-- Tab panes -->
         <div class="tab-content bg-light">
-            
+            <!-- PENDING LISTINGS TAB -->
+            <div id="pending" class="container tab-pane active show"><br>
+                <div class="container">
+                    <div class="row">
+                        <p class="h2">Pending Listings</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Rent</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Approve</th>
+                        <th scope="col">Reject</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for listing in pending %}
+                    <tr>
+                        <th scope="row">{{listing.id}}</th>
+                        <td>{{listing.address}}</td>
+                        <td>{{listing.rent}}</td>
+                        <td>{{listing.created}}</td>
+                        <td>
+                            <a href="/listings/{{listing.id}}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    View Listing
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/listings/{{listing.id}}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    View Listing
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/listings/{{listing.id}}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    View Listing
+                                </button>
+                            </a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}
