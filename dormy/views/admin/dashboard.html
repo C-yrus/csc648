@@ -1,1 +1,51 @@
-ADMIN DASHBOARD
+{% extends "layouts/base.html" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/style4.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="stylesheet"
+      href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+      integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/my-styles.css">
+{% endblock stylesheets %}
+
+{% block title %}Dashboard | Dormy{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="card-title"><span>Welcome, {{user.first_name}}!</span>
+    </h1>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>DASHBOARD</h3>
+            </div>
+
+            <ul class="list-unstyled components nav flex-column" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active show" style="color: #1ade1d" data-toggle="tab"
+                       href="#pending">Pending Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #68de22" data-toggle="tab" 
+                        href="#listings">All Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #5ade26" data-toggle="tab"
+                       href="#users">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #5ade26" data-toggle="tab"
+                       href="#settings">Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <!-- Tab panes -->
+        <div class="tab-content bg-light">
+            
+    </div>
+</div>
+{% endblock content %}
