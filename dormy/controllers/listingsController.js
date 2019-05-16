@@ -5,13 +5,27 @@ module.exports.list = (req, res) => {
     // express populates value in req.query from URL; `/listings?type=TYPE&query=SEARCH_QUERY`
     let type = req.query.type;
     let query = req.query.query;
+    let filter = req.query.filter;
+
     let q = `SELECT * FROM listings`;
+
     if (type && query) {
         q = `SELECT * FROM listings WHERE type = '${type}' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
-    } else if (!type && query) {
+    } else if (!type && query ) {
         q = `SELECT * FROM listings WHERE LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
-    } else if (type && !query) {
+    } else if (type && !query ) {
         q = `SELECT * FROM listings WHERE type = '${type}'`;
+    }
+
+    if (filter) {
+        q = `SELECT * FROM listings ORDER BY ${filter.valueOf()} DESC`;
+        if(type && !query) {
+            q = `SELECT * FROM listings WHERE (type = '${type}') ORDER BY ${filter.valueOf()} DESC`;
+        } else if(!type && query) {
+            q = `SELECT * FROM listings WHERE (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filter.valueOf()} DESC`;
+        }else if(type && query){
+            q = `SELECT * FROM listings WHERE type = 'house' AND LOWER(title) LIKE '%${query}%' ORDER BY ${filter.valueOf()} DESC`;
+        }
     }
     db.any(q)
         .then(data => {
@@ -19,11 +33,18 @@ module.exports.list = (req, res) => {
                 listings: data,
                 qCount: data.length,
                 type: type,
-                query: query
+                query: query,
+                filter: filter,
+                q: q
             });
         })
         .catch(err => console.error(`Error fetching listings; ${err}`));
 };
+
+
+
+
+
 
 // controller for route: GET `/listings/:id`
 // `:id` is populated from the listing detail route in /routes/
