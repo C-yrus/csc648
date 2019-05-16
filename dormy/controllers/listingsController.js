@@ -6,6 +6,7 @@ module.exports.list = (req, res) => {
     let type = req.query.type;
     let query = req.query.query;
     let filter = req.query.filter;
+    let filterAS = req.query.filterAS;
 
     let q = `SELECT * FROM listings`;
 
@@ -27,6 +28,17 @@ module.exports.list = (req, res) => {
             q = `SELECT * FROM listings WHERE type = 'house' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filter.valueOf()} DESC`;
         }
     }
+
+    if (filterAS) {
+        q = `SELECT * FROM listings ORDER BY ${filterAS.valueOf()} ASC`;
+        if(type && !query) {
+            q = `SELECT * FROM listings WHERE (type = '${type}') ORDER BY ${filterAS.valueOf()} ASC`;
+        } else if(!type && query) {
+            q = `SELECT * FROM listings WHERE (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filterAS.valueOf()} ASC`;
+        }else if(type && query){
+            q = `SELECT * FROM listings WHERE type = 'house' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filterAS.valueOf()} ASC`;
+        }
+    }
     db.any(q)
         .then(data => {
             res.render('listings/list', {
@@ -35,6 +47,7 @@ module.exports.list = (req, res) => {
                 type: type,
                 query: query,
                 filter: filter,
+                filterAS: filterAS,
                 q: q
             });
         })
