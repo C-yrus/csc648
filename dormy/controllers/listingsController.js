@@ -8,9 +8,9 @@ module.exports.list = (req, res) => {
     let q = `SELECT * FROM listings`;
     if (type && query) {
         q = `SELECT * FROM listings WHERE type = '${type}' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
-    } else if (!type && query) {
+    }else if (!type && query) {
         q = `SELECT * FROM listings WHERE LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
-    } else if (type && !query) {
+    }else if (type && !query) {
         q = `SELECT * FROM listings WHERE type = '${type}'`;
     }
     db.any(q)
