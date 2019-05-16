@@ -12,6 +12,8 @@
 {% block title %}Dashboard | Dormy{% endblock title %}
 
 {% block content %}
+
+
 <div class="container-fluid">
     <h1 class="card-title"><span>Welcome, {{user.first_name}}!</span>
     </h1>
@@ -29,7 +31,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: #68de22" data-toggle="tab" 
-                        href="#listings">All Listings</a>
+                        href="#listings">Active Listings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: #5ade26" data-toggle="tab"
@@ -60,7 +62,7 @@
                         <th scope="col">Rent</th>
                         <th scope="col">Created</th>
                         <th scope="col">Link</th>
-                        <th scope="col">Approve</th>
+                        <th scope="col">Accept</th>
                         <th scope="col">Reject</th>
                     </tr>
                     </thead>
@@ -79,18 +81,17 @@
                             </a>
                         </td>
                         <td>
-                            <a href="/listings/{{listing.id}}">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    View Listing
+                            
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="acceptButton">
+                                    Accept
                                 </button>
-                            </a>
                         </td>
                         <td>
-                            <a href="/listings/{{listing.id}}">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    View Listing
+                            <form method='PUT' action='/admin/accept'>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="acceptButton">
+                                    Reject
                                 </button>
-                            </a>
+                            </form>
                         </td>
                         
                     </tr>
@@ -103,7 +104,7 @@
             <div id="listings" class="container tab-pane fade"><br>
                 <div class="container">
                     <div class="row">
-                        <p class="h2">All Listings</p>
+                        <p class="h2">Active Listings</p>
                     </div>
                 </div>
                 <table class="table">
@@ -134,7 +135,7 @@
                         <td>
                             <a href="/listings/{{listing.id}}">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    View Listing
+                                    Delete
                                 </button>
                             </a>
                         </td>
@@ -174,14 +175,14 @@
                         <td>
                             <a href="/listings/{{ listing.id }}">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    View Listing
+                                    Block
                                 </button>
                             </a>
                         </td>
                         <td>
                             <a href="/listings/{{ listing.id }}">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    View Listing
+                                    Delete
                                 </button>
                             </a>
                         </td>
@@ -234,4 +235,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    const button = document.getElementById('acceptButton');
+    console.log(button);
+    button.addEventListener('click', function(e) {
+    
+      fetch('/admin/accept', {method: 'PUT'})
+        .then(function(response) {
+            throw new Error('Put Request for Accepting failed.');
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
+</script>
+
 {% endblock content %}

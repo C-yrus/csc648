@@ -1,16 +1,6 @@
 
 const db = require('../config/database');
 
-// module.exports.dashboard = (req, res) => {
-//     db.any(`SELECT * FROM listings WHERE NOT approved`)
-//         .then(data => {
-//             res.render('admin/dashboard',{
-//             listing: data,
-//         });
-    
-//     })
-//     .catch(err => res.send(`Error retrieving approved listings; ${err}`))
-// };
 
 module.exports.dashboard = (req, res) => {
     db.task('get-all', t => {
@@ -40,20 +30,21 @@ module.exports.logout = (req, res) => {
 };
 module.exports.accept = (req, res) => {
 
-    db.one(`UPDATE listings SET approved = TRUE WHERE id = ${req.params.id}`)
+    db.one(`UPDATE listings SET approved = TRUE WHERE id = 3`)
     .then(data => {
-        res.render('dashboard', {
+        res.render('admin/dashboard', {
             listing: data,
         });
     })
     .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 }
 module.exports.reject = (req, res) => {
-    db.one(`DELETE FROM listings WHERE id = ${req.params.id}`)
+    db.one(`DELETE FROM listings WHERE id = 3`)
     .then(data => {
-        res.render('dashboard', {
+        res.render('admin/dashboard', {
             listing: data,
         });
     })
     .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 }
+
