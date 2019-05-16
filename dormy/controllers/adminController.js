@@ -30,7 +30,7 @@ module.exports.logout = (req, res) => {
 };
 module.exports.accept = (req, res) => {
 
-    db.one(`UPDATE listings SET approved = TRUE WHERE id = 3`)
+    db.one(`UPDATE listings SET approved = TRUE WHERE id = '${req.params.id}'`)
     .then(data => {
         res.render('admin/dashboard', {
             listing: data,
@@ -39,7 +39,7 @@ module.exports.accept = (req, res) => {
     .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 }
 module.exports.reject = (req, res) => {
-    db.one(`DELETE FROM listings WHERE id = 3`)
+    db.one(`DELETE FROM listings WHERE id = ${req.params.id}`)
     .then(data => {
         res.render('admin/dashboard', {
             listing: data,
