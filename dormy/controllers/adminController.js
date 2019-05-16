@@ -29,17 +29,17 @@ module.exports.logout = (req, res) => {
     res.redirect('/');
 };
 module.exports.accept = (req, res) => {
-
-    db.one(`UPDATE listings SET approved = TRUE WHERE id = '${req.params.id}'`)
+    
+    db.one(`UPDATE listings SET approved = TRUE WHERE id = 3`)
     .then(data => {
-        res.render('admin/dashboard', {
+        res.redirect('admin/dashboard', {
             listing: data,
         });
     })
     .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 }
 module.exports.reject = (req, res) => {
-    db.one(`DELETE FROM listings WHERE id = ${req.params.id}`)
+    db.one(`DELETE FROM listings WHERE id = 3`)
     .then(data => {
         res.render('admin/dashboard', {
             listing: data,

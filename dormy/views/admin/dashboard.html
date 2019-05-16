@@ -67,31 +67,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for listing in pending %}
+                    {% for item in pending %}
                     <tr>
-                        <th scope="row">{{listing.id}}</th>
-                        <td>{{listing.address}}</td>
-                        <td>{{listing.rent}}</td>
-                        <td>{{listing.created}}</td>
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.address}}</td>
+                        <td>{{item.rent}}</td>
+                        <td>{{item.created}}</td>
                         <td>
-                            <a href="/listings/{{listing.id}}" target = "_blank">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    View Listing
-                                </button>
-                            </a>
+                            <a href="/listings/{{item.id}}" target="_blank"><button type="button"class="btn btn-sm btn-outline-secondary">View Detail</button></a>
                         </td>
                         <td>
-                            
-                                <button type="button" class="btn btn-sm btn-outline-secondary" id="acceptButton">
-                                    Accept
-                                </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="acceptButton">Accept</button>
+                            <!--HTML forms apparently do not support operations besides GET and POST so using form method = "PUT"
+                            is not a thing-->
                         </td>
                         <td>
-                            <form method='PUT' action='/admin/accept'>
-                                <button type="submit" class="btn btn-sm btn-outline-secondary">
-                                    Reject
-                                </button>
-                            </form>
+                            <button type="submit" class="btn btn-sm btn-outline-secondary" id="acceptButton" name = "{{item.id}}">Reject</button>
                         </td>
                         
                     </tr>
@@ -238,11 +229,13 @@
 
 <script>
     const button = document.getElementById('acceptButton');
-    console.log(button);
     button.addEventListener('click', function(e) {
-    
       fetch('/admin/accept', {method: 'PUT'})
         .then(function(response) {
+            if(response.ok) {
+                console.log('click was recorded');
+                return;
+            }
             throw new Error('Put Request for Accepting failed.');
         })
         .catch(function(error) {
@@ -250,5 +243,22 @@
         });
     });
 </script>
+
+<script>
+        const button = document.getElementById('rejectButton');
+        button.addEventListener('click', function(e) {
+          fetch('/admin/reject', {method: 'DELETE'})
+            .then(function(response) {
+                if(response.ok) {
+                    console.log('click was recorded');
+                    return;
+                }
+                throw new Error('DELETE Request for Rejecting failed.');
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        });
+    </script>
 
 {% endblock content %}
