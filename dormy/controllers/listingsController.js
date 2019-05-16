@@ -11,15 +11,9 @@ module.exports.list = (req, res) => {
 
     if (type && query) {
         q = `SELECT * FROM listings WHERE type = '${type}' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
-<<<<<<< HEAD
-    }else if (!type && query) {
-        q = `SELECT * FROM listings WHERE LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
-    }else if (type && !query) {
-=======
     } else if (!type && query ) {
         q = `SELECT * FROM listings WHERE LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
     } else if (type && !query ) {
->>>>>>> ba1fe2ff760ed63ceedb3e46c55846128a4f9e09
         q = `SELECT * FROM listings WHERE type = '${type}'`;
     }
 
