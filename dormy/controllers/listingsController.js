@@ -24,7 +24,7 @@ module.exports.list = (req, res) => {
         } else if(!type && query) {
             q = `SELECT * FROM listings WHERE (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filter.valueOf()} DESC`;
         }else if(type && query){
-            q = `SELECT * FROM listings WHERE type = 'house' AND LOWER(title) LIKE '%${query}%' ORDER BY ${filter.valueOf()} DESC`;
+            q = `SELECT * FROM listings WHERE type = 'house' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filter.valueOf()} DESC`;
         }
     }
     db.any(q)
