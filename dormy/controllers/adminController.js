@@ -29,22 +29,59 @@ module.exports.logout = (req, res) => {
     res.redirect('/');
 };
 module.exports.accept = (req, res) => {
-    
-    db.one(`UPDATE listings SET approved = TRUE WHERE id = 3`)
-    .then(data => {
-        res.redirect('admin/dashboard', {
-            listing: data,
-        });
+    var query = "UPDATE listings SET approved = TRUE where id = ";
+    var id = req.body.id;
+    query = query.concat(id);
+    db.any(query)
+    .then( function () {
+        res.redirect('/admin');
+        //success
+        // res.redirect('admin/dashboard', { //i know this shouldn't work, it's just placeholder until the request works with variables
+        //     listing: data,
+        // });
     })
     .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 }
 module.exports.reject = (req, res) => {
-    db.one(`DELETE FROM listings WHERE id = 3`)
-    .then(data => {
-        res.render('admin/dashboard', {
-            listing: data,
-        });
+    var query = "DELETE FROM listings WHERE id = ";
+    var id = req.body.id;
+    query = query.concat(id);
+    db.any(query)
+    .then(function () {
+        res.redirect('/admin');
     })
     .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 }
 
+module.exports.block = (req, res) => {
+    var query = "UPDATE users SET banned = TRUE WHERE id = ";
+    var id = req.body.id;
+    query = query.concat(id);
+    db.any(query)
+    .then(function () {
+        res.redirect('/admin');
+    })
+    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
+}
+
+module.exports.deleteUser = (req, res) => {
+    var query = "DELETE FROM users WHERE id = ";
+    var id = req.body.id;
+    query = query.concat(id);
+    db.any(query)
+    .then(function () {
+        res.redirect('/admin');
+    })
+    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
+}
+
+module.exports.deleteListing = (req, res) => {
+    var query = "DELETE FROM listings WHERE id = ";
+    var id = req.body.id;
+    query = query.concat(id);
+    db.any(query)
+    .then(function () {
+        res.redirect('/admin');
+    })
+    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
+}

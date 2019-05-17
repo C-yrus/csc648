@@ -8,6 +8,10 @@ router.get('/login', adminController.login);
 router.get('/logout', adminController.logout);
 
 router.put('/accept', adminController.accept);
+router.delete('/reject', adminController.reject);
+router.delete('/deleteListing', adminController.deleteListing);
+router.delete('/deleteUser', adminController.deleteUser);
+router.put('/block', adminController.block);
 
 
 module.exports = router;

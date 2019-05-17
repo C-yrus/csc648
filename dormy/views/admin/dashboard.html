@@ -77,12 +77,12 @@
                             <a href="/listings/{{item.id}}" target="_blank"><button type="button"class="btn btn-sm btn-outline-secondary">View Detail</button></a>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-outline-secondary" id="acceptButton">Accept</button>
+                            <button type="button" value = "{{item.id}}" class="btn btn-sm btn-outline-secondary" onclick="accept(this.value)">Accept</button>
                             <!--HTML forms apparently do not support operations besides GET and POST so using form method = "PUT"
                             is not a thing-->
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-sm btn-outline-secondary" id="acceptButton" name = "{{item.id}}">Reject</button>
+                                <button type="button" value = "{{item.id}}" class="btn btn-sm btn-outline-secondary" onclick="reject(this.value)">Reject</button>
                         </td>
                         
                     </tr>
@@ -124,11 +124,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href="/listings/{{listing.id}}">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    Delete
-                                </button>
-                            </a>
+                                <button type="button" value = "{{item.id}}" class="btn btn-sm btn-outline-secondary" onclick="deleteListing(this.value)">Delete</button>
                         </td>
                     </tr>
                     {% endfor %}
@@ -151,6 +147,7 @@
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
+                        <th scope="col">Blocked</th>
                         <th scope="col">Block</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -163,19 +160,12 @@
                         <td>{{ user.last_name }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.phone }}</td>
+                        <td>{{ user.banned }}</td>
                         <td>
-                            <a href="/listings/{{ listing.id }}">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    Block
-                                </button>
-                            </a>
+                                <button type="button" value = "{{user.id}}" class="btn btn-sm btn-outline-secondary" onclick="block(this.value)">Block</button>
                         </td>
                         <td>
-                            <a href="/listings/{{ listing.id }}">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">
-                                    Delete
-                                </button>
-                            </a>
+                                <button type="button" value = "{{user.id}}" class="btn btn-sm btn-outline-secondary" onclick="deleteUser(this.value)">Delete</button>
                         </td>
                     </tr>
                     {% endfor %}
@@ -228,37 +218,135 @@
 </div>
 
 <script>
-    const button = document.getElementById('acceptButton');
-    button.addEventListener('click', function(e) {
-      fetch('/admin/accept', {method: 'PUT'})
+    function accept(val)
+    {
+        var Data = {
+            id : val
+        };
+        var Prams = {
+            body : Data,
+            method : "PUT"
+        };
+        fetch('/admin/accept', Prams)
         .then(function(response) {
             if(response.ok) {
-                console.log('click was recorded');
+                console.log('accept request ok');
                 return;
             }
             throw new Error('Put Request for Accepting failed.');
         })
-        .catch(function(error) {
-          console.log(error);
-        });
-    });
-</script>
+    };
 
-<script>
-        const button = document.getElementById('rejectButton');
-        button.addEventListener('click', function(e) {
-          fetch('/admin/reject', {method: 'DELETE'})
-            .then(function(response) {
-                if(response.ok) {
-                    console.log('click was recorded');
-                    return;
-                }
-                throw new Error('DELETE Request for Rejecting failed.');
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-        });
+    function reject(val)
+    {
+        var Data = {
+            id : val
+        };
+        var Prams = {
+            body : Data,
+            method : "DELETE"
+        };
+        fetch('/admin/reject', Prams)
+        .then(function(response) {
+            if(response.ok) {
+                console.log('reject request ok');
+                return;
+            }
+            throw new Error('DELETE Request for Rejecting failed.');
+        })
+    };
+    // const button = document.getElementById('acceptButton');
+    // button.addEventListener('click', function(e) {
+    //   fetch('/admin/accept', {method: 'PUT'})
+    //     .then(function(response) {
+    //         if(response.ok) {
+    //             console.log('accept request ok');
+    //             return;
+    //         }
+    //         throw new Error('Put Request for Accepting failed.');
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error);
+    //     });
+    // });
+
+    //     const button = document.getElementById('rejectButton');
+    //     button.addEventListener('click', function(e) {
+    //       fetch('/admin/reject', {method: 'DELETE'})
+    //         .then(function(response) {
+    //             if(response.ok) {
+    //                 console.log('reject request ok');
+    //                 return;
+    //             }
+    //             throw new Error('DELETE Request for Rejecting failed.');
+    //         })
+    //         .catch(function(error) {
+    //           console.log(error);
+    //         });
+    //     });
+
+
+    function deleteListing(val)
+    {
+        var Data = {
+            id : val
+        };
+        var Prams = {
+            body : Data,
+            method : "DELETE"
+        };
+        fetch('/admin/deleteListing', Prams)
+        .then(function(response) {
+            if(response.ok) {
+                console.log('delete listing request ok');
+                return;
+            }
+            throw new Error('DELETE Request for Delete Listing failed.');
+        })
+    };
+
+    function deleteUser(val)
+    {
+        var Data = {
+            id : val
+        };
+        var Prams = {
+            body : Data,
+            method : "DELETE"
+        };
+        fetch('/admin/deleteUser', Prams)
+        .then(function(response) {
+            if(response.ok) {
+                console.log('delete user request ok');
+                return;
+            }
+            throw new Error('DELETE Request for Delete User failed.');
+        })
+    };
+
+    function block(val)
+    {
+        var Data = {
+            id : val
+        };
+        var Prams = {
+            body : Data,
+            method : "PUT"
+        };
+        fetch('/admin/block', Prams)
+        .then(function(response) {
+            if(response.ok) {
+                console.log('block uesr request ok');
+                return;
+            }
+            throw new Error('PUT Request for Block User failed.');
+        })
+    };
+
+
+
+
+    
     </script>
 
 {% endblock content %}
