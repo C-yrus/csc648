@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-fluid">
     {% if message %}
-        <div class="alert alert-success">{{message}}</div>
+    <div class="alert alert-success">{{message}}</div>
     {% endif %}
     <h2 align="center">{{ listing.title }}</h2>
     <div class="row">
@@ -14,10 +14,11 @@
                 <div class="card-body">
                     <!-- listing thumbnail -->
                     <div>
-                        <img style="object-fit: fill" src="/thumbnails/{{ listing.thumbnail }}" alt="{{ listing.title }}" height="100%"
-                         width="100%">
+                        <img style="object-fit: fill" src="/thumbnails/{{ listing.thumbnail }}"
+                             alt="{{ listing.title }}" height="100%"
+                             width="100%">
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -26,40 +27,110 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                        <div id="floating-panel" class="listing-description">
-                            <input id="address" type="hidden" value="{{ listing.address }}">
-                              </div>
-                              <div id="map"></div>
-                              <script>
-                                function initMap() {
-                                  var map = new google.maps.Map(document.getElementById('map'), {
-                                    zoom: 13,
-                                    center: {lat: 37.721933, lng: -122.478620}
-                                  });
-                                  var geocoder = new google.maps.Geocoder();
-                          
-                                  geocodeAddress(geocoder, map);
+                    <div id="floating-panel" class="listing-description">
+                        <input id="address" type="hidden" value="{{ listing.address }}">
+                    </div>
+                    <div id="map">
+                        <script>
+                            function initMap() {
+                                var bounds = new google.maps.LatLngBounds;
+                                var markersArray = [];
 
-                                }
-                          
-                                function geocodeAddress(geocoder, resultsMap) {
-                                  var address = document.getElementById('address').value;
-                                  geocoder.geocode({'address': address}, function(results, status) {
-                                    if (status === 'OK') {
-                                      resultsMap.setCenter(results[0].geometry.location);
-                                      var marker = new google.maps.Marker({
-                                        map: resultsMap,
-                                        position: results[0].geometry.location
-                                      });
+                                var origin1 = {lat: 37.721933, lng: -122.478620};
+
+                                var destinationA = '1715 San Jose Ave';
+
+                                var destinationIcon = 'https://chart.googleapis.com/chart?' +
+                                    'chst=d_map_pin_letter&chld=D|FF0000|000000';
+                                var originIcon = 'https://chart.googleapis.com/chart?' +
+                                    'chst=d_map_pin_letter&chld=O|FFFF00|000000';
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                    center: {lat: 37.721933, lng: -122.478620},
+                                    zoom: 10
+                                });
+                                var geocoder = new google.maps.Geocoder;
+
+                                var service = new google.maps.DistanceMatrixService;
+                                service.getDistanceMatrix({
+                                    origins: [origin1],
+                                    destinations: [destinationA],
+                                    travelMode: 'DRIVING',
+                                    unitSystem: google.maps.UnitSystem.IMPERIAL,
+                                    avoidHighways: false,
+                                    avoidTolls: false
+                                }, function (response, status) {
+                                    if (status !== 'OK') {
+                                        alert('Error was: ' + status);
                                     } else {
-                                      alert('Geocode was not successful for the following reason: ' + status);
+                                        var originList = response.originAddresses;
+                                        var destinationList = response.destinationAddresses;
+                                        var outputDiv = document.getElementById('output');
+                                        outputDiv.innerHTML = '';
+                                        deleteMarkers(markersArray);
+
+                                        var showGeocodedAddressOnMap = function (asDestination) {
+                                            var icon = asDestination ? destinationIcon : originIcon;
+                                            return function (results, status) {
+                                                if (status === 'OK') {
+                                                    map.fitBounds(bounds.extend(results[0].geometry.location));
+                                                    markersArray.push(new google.maps.Marker({
+                                                        map: map,
+                                                        position: results[0].geometry.location,
+                                                        icon: icon
+                                                    }));
+                                                } else {
+                                                    alert('Geocode was not successful due to: ' + status);
+                                                }
+                                            };
+                                        };
                                     }
-                                  });
+                                });
+                            }
+
+                            function deleteMarkers(markersArray) {
+                                for (var i = 0; i < markersArray.length; i++) {
+                                    markersArray[i].setMap(null);
                                 }
-                              </script>
-                              <a href="/listings/distance"><button type="button" class="btn btn-info btn-lg">
-                                Click for Time and Distance
-                              </button></a>
+                                markersArray = [];
+                            }
+                        </script>
+                    </div>
+
+<!--                    <script async defer-->
+<!--                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn8zKXtCFQQtOvw07ZJhqBazzr4pzn_Do&callback=initMap">-->
+<!--                    </script>-->
+                                                  <script>
+                                                    function initMap() {
+                                                      var map = new google.maps.Map(document.getElementById('map'), {
+                                                        zoom: 13,
+                                                        center: {lat: 37.721933, lng: -122.478620}
+                                                      });
+                                                      var geocoder = new google.maps.Geocoder();
+
+                                                      geocodeAddress(geocoder, map);
+
+                                                    }
+
+                                                    function geocodeAddress(geocoder, resultsMap) {
+                                                      var address = document.getElementById('address').value;
+                                                      geocoder.geocode({'address': address}, function(results, status) {
+                                                        if (status === 'OK') {
+                                                          resultsMap.setCenter(results[0].geometry.location);
+                                                          var marker = new google.maps.Marker({
+                                                            map: resultsMap,
+                                                            position: results[0].geometry.location
+                                                          });
+                                                        } else {
+                                                          alert('Geocode was not successful for the following reason: ' + status);
+                                                        }
+                                                      });
+                                                    }
+                                                  </script>
+                    <a href="/listings/distance">
+                        <button type="button" class="btn btn-info btn-lg">
+                            Click for Time and Distance
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -107,13 +178,17 @@
                                     <div class="modal-body">
                                         <form method="post" action="/listings/{{listing.id}}/new-message">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="from_name" placeholder="Your name" required autofocus>
+                                                <input class="form-control" type="text" name="from_name"
+                                                       placeholder="Your name" required autofocus>
                                             </div>
                                             <div class="form-group">
-                                                <input class="form-control" type="email" name="from_email" placeholder="Your e-mail" required>
+                                                <input class="form-control" type="email" name="from_email"
+                                                       placeholder="Your e-mail" required>
                                             </div>
                                             <div class="form-group">
-                                                <textarea class="form-control" type="text" rows="7" name="message" placeholder="Your message to the Landlord..." required></textarea>
+                                                <textarea class="form-control" type="text" rows="7" name="message"
+                                                          placeholder="Your message to the Landlord..."
+                                                          required></textarea>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Send</button>
