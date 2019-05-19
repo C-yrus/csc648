@@ -8,35 +8,35 @@ module.exports.list = (req, res) => {
     let filter = req.query.filter;
     let filterAS = req.query.filterAS;
 
-    let q = `SELECT * FROM listings`;
+    let q = `SELECT * FROM listings WHERE approved='true'`;
 
     if (type && query) {
-        q = `SELECT * FROM listings WHERE type = '${type}' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
+        q = `SELECT * FROM listings WHERE type = '${type}' AND approved='true' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
     } else if (!type && query ) {
-        q = `SELECT * FROM listings WHERE LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
+        q = `SELECT * FROM listings WHERE approved='true' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
     } else if (type && !query ) {
-        q = `SELECT * FROM listings WHERE type = '${type}'`;
+        q = `SELECT * FROM listings WHERE approved='true' AND type = '${type}'`;
     }
 
     if (filter) {
-        q = `SELECT * FROM listings ORDER BY ${filter.valueOf()} DESC`;
+        q = `SELECT * FROM listings WHERE approved='true' ORDER BY ${filter.valueOf()} DESC`;
         if(type && !query) {
-            q = `SELECT * FROM listings WHERE (type = '${type}') ORDER BY ${filter.valueOf()} DESC`;
+            q = `SELECT * FROM listings WHERE approved='true' AND (type = '${type}') ORDER BY ${filter.valueOf()} DESC`;
         } else if(!type && query) {
-            q = `SELECT * FROM listings WHERE (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filter.valueOf()} DESC`;
+            q = `SELECT * FROM listings WHERE approved='true' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filter.valueOf()} DESC`;
         }else if(type && query){
-            q = `SELECT * FROM listings WHERE type = 'house' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filter.valueOf()} DESC`;
+            q = `SELECT * FROM listings WHERE type = '${type}' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filter.valueOf()} DESC`;
         }
     }
 
     if (filterAS) {
-        q = `SELECT * FROM listings ORDER BY ${filterAS.valueOf()} ASC`;
+        q = `SELECT * FROM listings WHERE approved='true' ORDER BY ${filterAS.valueOf()} ASC`;
         if(type && !query) {
             q = `SELECT * FROM listings WHERE (type = '${type}') ORDER BY ${filterAS.valueOf()} ASC`;
         } else if(!type && query) {
             q = `SELECT * FROM listings WHERE (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filterAS.valueOf()} ASC`;
         }else if(type && query){
-            q = `SELECT * FROM listings WHERE type = 'house' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filterAS.valueOf()} ASC`;
+            q = `SELECT * FROM listings WHERE type = '${type}' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filterAS.valueOf()} ASC`;
         }
     }
     db.any(q)
