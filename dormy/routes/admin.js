@@ -3,15 +3,19 @@ const adminController = require('../controllers/adminController');
 
 const router = express.Router();
 
-router.get('/', adminController.dashboard);
-router.get('/login', adminController.login);
-router.get('/logout', adminController.logout);
+router.get('/', isAdmin, adminController.dashboard);
+router.post('/accept', isAdmin, adminController.accept);
+router.post('/reject', isAdmin, adminController.reject);
+router.post('/delete-user', isAdmin, adminController.deleteUser);
+router.post('/block', isAdmin, adminController.block);
 
-router.put('/accept', adminController.accept);
-router.delete('/reject', adminController.reject);
-router.delete('/deleteListing', adminController.deleteListing);
-router.delete('/deleteUser', adminController.deleteUser);
-router.put('/block', adminController.block);
-
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated()) {
+        if (req.user.isadmin) {
+            return next();
+        }
+    }
+    res.redirect(`/account`);
+}
 
 module.exports = router;

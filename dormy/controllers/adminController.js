@@ -1,7 +1,6 @@
 
 const db = require('../config/database');
 
-
 module.exports.dashboard = (req, res) => {
     db.task('get-all', t => {
         return t.batch([
@@ -20,68 +19,27 @@ module.exports.dashboard = (req, res) => {
         })
         .catch(err => res.send(`Error retrieving listing detail; ${err}`));
 };
-module.exports.login = (req, res) => {
-    res.render('admin/login.html');
+
+module.exports.accept = (req, res) => {
+    db.any(`UPDATE listings SET approved='true' WHERE id='${req.body.id}'`)
+        .then(() => res.redirect(`/admin`))
+        .catch(err => console.error(`Error updating listing approval column; ${err}`));
 };
 
-module.exports.logout = (req, res) => {
-    req.logout();
-    res.redirect('/');
-};
-module.exports.accept = (req, res) => {
-    var query = "UPDATE listings SET approved = TRUE where id = ";
-    var id = req.body.id;
-    query = query.concat(id);
-    db.any(query)
-    .then( function () {
-        res.redirect('/admin');
-        //success
-        // res.redirect('admin/dashboard', { //i know this shouldn't work, it's just placeholder until the request works with variables
-        //     listing: data,
-        // });
-    })
-    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
-}
 module.exports.reject = (req, res) => {
-    var query = "DELETE FROM listings WHERE id = ";
-    var id = req.body.id;
-    query = query.concat(id);
-    db.any(query)
-    .then(function () {
-        res.redirect('/admin');
-    })
-    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
-}
+    db.any(`DELETE FROM listings WHERE id='${req.body.id}'`)
+        .then(() => res.redirect(`/admin`))
+        .catch(err => console.error(`Error rejecting listing; ${err}`));
+};
 
 module.exports.block = (req, res) => {
-    var query = "UPDATE users SET banned = TRUE WHERE id = ";
-    var id = req.body.id;
-    query = query.concat(id);
-    db.any(query)
-    .then(function () {
-        res.redirect('/admin');
-    })
-    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
-}
+    db.any(`UPDATE users SET banned='TRUE' WHERE id='${req.body.id}'`)
+        .then(() => res.redirect('/admin'))
+        .catch(err => console.error(`Error blocking user: ${err}`));
+};
 
 module.exports.deleteUser = (req, res) => {
-    var query = "DELETE FROM users WHERE id = ";
-    var id = req.body.id;
-    query = query.concat(id);
-    db.any(query)
-    .then(function () {
-        res.redirect('/admin');
-    })
-    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
-}
-
-module.exports.deleteListing = (req, res) => {
-    var query = "DELETE FROM listings WHERE id = ";
-    var id = req.body.id;
-    query = query.concat(id);
-    db.any(query)
-    .then(function () {
-        res.redirect('/admin');
-    })
-    .catch(err => res.send(`Error retrieving listing detail; ${err}`));
-}
+    db.any(`DELETE FROM users WHERE id='${req.body.id}'`)
+        .then(() => res.redirect('/admin'))
+        .catch(err => console.error(`Error deleting user: ${err}`));
+};

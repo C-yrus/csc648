@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/my-styles.css">
 {% endblock stylesheets %}
 
-{% block title %}Dashboard | Dormy{% endblock title %}
+{% block title %}Admin Dashboard | Dormy{% endblock title %}
 
 {% block content %}
 
@@ -37,13 +37,8 @@
                     <a class="nav-link" style="color: #5ade26" data-toggle="tab"
                        href="#users">Users</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: #5ade26" data-toggle="tab"
-                       href="#settings">Settings</a>
-                </li>
             </ul>
         </nav>
-
 
         <!-- Tab panes -->
         <div class="tab-content bg-light">
@@ -74,17 +69,24 @@
                         <td>{{item.rent}}</td>
                         <td>{{item.created}}</td>
                         <td>
-                            <a href="/listings/{{item.id}}" target="_blank"><button type="button"class="btn btn-sm btn-outline-secondary">View Detail</button></a>
+                            <a href="/listings/{{item.id}}" target="_blank">
+                                <button type="button"class="btn btn-sm btn-outline-secondary">
+                                    View Detail
+                                </button>
+                            </a>
                         </td>
                         <td>
-                            <button type="button" value = "{{item.id}}" class="btn btn-sm btn-outline-secondary" onclick="accept(this.value)">Accept</button>
-                            <!--HTML forms apparently do not support operations besides GET and POST so using form method = "PUT"
-                            is not a thing-->
+                            <form method="POST" action="/admin/accept">
+                                <input type="hidden" name="id" value="{{item.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Accept</button>
+                            </form>
                         </td>
                         <td>
-                                <button type="button" value = "{{item.id}}" class="btn btn-sm btn-outline-secondary" onclick="reject(this.value)">Reject</button>
+                            <form method="POST" action="/admin/reject">
+                                <input type="hidden" name="id" value="{{item.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Reject</button>
+                            </form>
                         </td>
-                        
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -106,7 +108,6 @@
                         <th scope="col">Rent</th>
                         <th scope="col">Created</th>
                         <th scope="col">Link</th>
-                        <th scope="col">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -122,9 +123,6 @@
                                     View Listing
                                 </button>
                             </a>
-                        </td>
-                        <td>
-                                <button type="button" value = "{{item.id}}" class="btn btn-sm btn-outline-secondary" onclick="deleteListing(this.value)">Delete</button>
                         </td>
                     </tr>
                     {% endfor %}
@@ -162,191 +160,23 @@
                         <td>{{ user.phone }}</td>
                         <td>{{ user.banned }}</td>
                         <td>
-                                <button type="button" value = "{{user.id}}" class="btn btn-sm btn-outline-secondary" onclick="block(this.value)">Block</button>
+                            <form method="POST" action="/admin/block">
+                                <input type="hidden" name="id" value="{{user.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Block</button>
+                            </form>
                         </td>
                         <td>
-                                <button type="button" value = "{{user.id}}" class="btn btn-sm btn-outline-secondary" onclick="deleteUser(this.value)">Delete</button>
+                            <form method="POST" action="/admin/delete-user">
+                                <input type="hidden" name="id" value="{{user.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
-
-            <!--SETTINGS TAB -->
-            <div id="settings" class="container tab-pane fade"><br>
-                <h2>Update Password</h2>
-                <div class="container-fluid">
-                    <form class="form-horizontal" action="" method="post">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <br>
-                                    <input id="form_password" type="password" name="password"
-                                           class="form-control"
-                                           placeholder="New Password" maxlength="40"
-                                           pattern="^[A-Za-z0-9 ]*$"
-                                           title="Alphanumeric Characters Only" required="required">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <input id="form_confirm_password" type="password"
-                                           name="confirmpassword" class="form-control"
-                                           placeholder="New Password Again"
-                                           maxlength="40" pattern="^[A-Za-z0-9 ]*$"
-                                           title="Alphanumeric Characters Only" required="required">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <button class="btn btn-md btn-success btn-raised" formmethod="post"
-                                        type="submit"
-                                        style="color: white; background-color: #9575cd; border-color: #9575cd; ">
-                                    Update Password
-                                </button>
-                            </div>
-                            <input type="hidden" id="user_id" name="user_id" value="13">
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
-<script>
-    function accept(val)
-    {
-        var Data = {
-            id : val
-        };
-        var Prams = {
-            body : Data,
-            method : "PUT"
-        };
-        fetch('/admin/accept', Prams)
-        .then(function(response) {
-            if(response.ok) {
-                console.log('accept request ok');
-                return;
-            }
-            throw new Error('Put Request for Accepting failed.');
-        })
-    };
-
-    function reject(val)
-    {
-        var Data = {
-            id : val
-        };
-        var Prams = {
-            body : Data,
-            method : "DELETE"
-        };
-        fetch('/admin/reject', Prams)
-        .then(function(response) {
-            if(response.ok) {
-                console.log('reject request ok');
-                return;
-            }
-            throw new Error('DELETE Request for Rejecting failed.');
-        })
-    };
-    // const button = document.getElementById('acceptButton');
-    // button.addEventListener('click', function(e) {
-    //   fetch('/admin/accept', {method: 'PUT'})
-    //     .then(function(response) {
-    //         if(response.ok) {
-    //             console.log('accept request ok');
-    //             return;
-    //         }
-    //         throw new Error('Put Request for Accepting failed.');
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // });
-
-    //     const button = document.getElementById('rejectButton');
-    //     button.addEventListener('click', function(e) {
-    //       fetch('/admin/reject', {method: 'DELETE'})
-    //         .then(function(response) {
-    //             if(response.ok) {
-    //                 console.log('reject request ok');
-    //                 return;
-    //             }
-    //             throw new Error('DELETE Request for Rejecting failed.');
-    //         })
-    //         .catch(function(error) {
-    //           console.log(error);
-    //         });
-    //     });
-
-
-    function deleteListing(val)
-    {
-        var Data = {
-            id : val
-        };
-        var Prams = {
-            body : Data,
-            method : "DELETE"
-        };
-        fetch('/admin/deleteListing', Prams)
-        .then(function(response) {
-            if(response.ok) {
-                console.log('delete listing request ok');
-                return;
-            }
-            throw new Error('DELETE Request for Delete Listing failed.');
-        })
-    };
-
-    function deleteUser(val)
-    {
-        var Data = {
-            id : val
-        };
-        var Prams = {
-            body : Data,
-            method : "DELETE"
-        };
-        fetch('/admin/deleteUser', Prams)
-        .then(function(response) {
-            if(response.ok) {
-                console.log('delete user request ok');
-                return;
-            }
-            throw new Error('DELETE Request for Delete User failed.');
-        })
-    };
-
-    function block(val)
-    {
-        var Data = {
-            id : val
-        };
-        var Prams = {
-            body : Data,
-            method : "PUT"
-        };
-        fetch('/admin/block', Prams)
-        .then(function(response) {
-            if(response.ok) {
-                console.log('block uesr request ok');
-                return;
-            }
-            throw new Error('PUT Request for Block User failed.');
-        })
-    };
-
-
-
-
-    
-    </script>
-
 {% endblock content %}
