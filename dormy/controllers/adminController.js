@@ -32,6 +32,12 @@ module.exports.reject = (req, res) => {
         .catch(err => console.error(`Error rejecting listing; ${err}`));
 };
 
+module.exports.deleteListing = (req, res) => {
+    db.any(`DELETE FROM listings WHERE id='${req.body.id}'`)
+        .then(() => res.redirect(`/admin`))
+        .catch(err => console.error(`Error rejecting listing; ${err}`));
+};
+
 module.exports.block = (req, res) => {
     db.any(`UPDATE users SET banned='TRUE' WHERE id='${req.body.id}'`)
         .then(() => res.redirect('/admin'))

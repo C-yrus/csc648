@@ -108,6 +108,7 @@
                         <th scope="col">Rent</th>
                         <th scope="col">Created</th>
                         <th scope="col">Link</th>
+                        <th scope="col">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -124,6 +125,13 @@
                                 </button>
                             </a>
                         </td>
+                        <td>
+                            <form method="POST" action="/admin/delete-listing">
+                                <input type="hidden" name="id" value="{{listing.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                            </form>
+                        </td>
+                        
                     </tr>
                     {% endfor %}
                     </tbody>
