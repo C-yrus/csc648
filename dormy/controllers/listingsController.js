@@ -55,20 +55,16 @@ module.exports.list = (req, res) => {
 };
 
 
-
-
-
-
 // controller for route: GET `/listings/:id`
 // `:id` is populated from the listing detail route in /routes/
 module.exports.detail = (req, res) => {
-    db.one(`SELECT * FROM listings WHERE id = '${req.params.id}'`)
+    db.one(`SELECT * FROM listings WHERE id = '${req.params.id}' AND approved = 'true'`)
         .then(data => {
             res.render('listings/detail', {
                 listing: data,
             });
         })
-        .catch(err => res.send(`Error retrieving listing detail; ${err}`));
+        .catch(() => res.redirect('/account'));
 };
 
 // controller for route; GET `/listings/add`
