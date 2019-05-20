@@ -5,7 +5,7 @@ const upload = require('../config/multer');
 const router = express.Router();
 
 router.get('/', listingsController.list);
-router.get('/distance', listingsController.distance);
+router.get('/:id/distance', listingsController.distance);
 router.post('/', upload.single('thumbnail'), listingsController.addNew);
 router.get('/add', isLoggedIn, listingsController.add);
 router.get('/:id', listingsController.detail);

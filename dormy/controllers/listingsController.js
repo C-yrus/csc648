@@ -74,7 +74,13 @@ module.exports.add = (req, res) => {
 
 // controller for route; GET `/listings/distance`
 module.exports.distance = (req, res) => {
-    res.render('distance', {});
+    db.one(`SELECT * FROM listings WHERE id = '${req.params.id}' AND approved = 'true'`)
+        .then(data => {
+            res.render('distance', {
+                listing: data
+            });
+        })
+        .catch(() => res.redirect('/account'));
 };
 
 // controller for route; POST `/listings/add`
