@@ -1,0 +1,96 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Listings | Dormy{% endblock title %}
+
+{% block content %}
+
+<!-- SEARCH FILTER -->
+<form class="form-inline" action="/listings">
+    <input style="visibility: hidden; width: 0px"  name="type" value="{{type}}">
+        <input style="visibility: hidden ;width: 0px " name="query" value="{{query}}">
+            <div class="dropdown"  >
+                <button class="btn dropdown-toggle" name="type" value="{{type}}" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort by:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2"  id="name" >
+                    <button name="filter" value="rent" class="dropdown-item" type="submit">Price high to low</button>
+                    <button name="filterAS" value="rent" class="dropdown-item" type="submit">Price low to high</button>
+                    <button name="filter" value="distance" class="dropdown-item" type="submit">Distance high to low</button>
+                    <button name="filterAS" value="distance" class="dropdown-item" type="submit">Distance low to high</button>
+                    <button name="filter" value="id" class="dropdown-item" type="submit">Newest</button>
+                </div>
+            </div>
+        </input>
+    </input>
+    <div style="display: inline-block" class="offset-9 text-md-right">
+        <div class="text-black ">
+            <h6 class="title">Search Result: {{ qCount }}</h6>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+<!-- END FILTER -->
+
+<hr/>
+
+<!-- LISTING LOOP -->
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h4>Search Query - Listing <i>Type:</i> {{ type if type else "None" }} | <i>Keywords:</i> {{ query if query else "None" }} | <i>Filter:</i> {{filter if filter else filterAS}}</h4>
+        <br />
+        <div class="row">
+        {% for listing in listings %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src="/thumbnails/{{ listing.thumbnail }}" alt="Card image cap" width="100%" height="225" >
+            <div class="card-body">
+              <h5 class="card-title">{{ listing.title }}</h5>
+                            <p class="card-text">
+                                <i class="fas fa-home"></i> {{listing.address}}
+                            </p>
+                            <p class="card-text">
+                                <i class="fa fa-dollar-sign"></i> {{listing.rent}}/month
+                            </p>
+                            <p class="card-text">
+                                <i class="fa fa-bed"></i> {{listing.beds}} bed(s)
+                            </p>
+                            <p class="card-text">
+                                <i class="fa fa-bath"></i> {{listing.baths}} bath(s)
+                            </p>
+              <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                      <a href="/listings/{{listing.id}}"><button type="button"class="btn btn-sm btn-outline-secondary">View Detail</button></a>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+<!-- END LISTING -->
+
+
+<!-- PAGING -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+<!-- End PAGEING -->
+
+{% endblock content %}
+

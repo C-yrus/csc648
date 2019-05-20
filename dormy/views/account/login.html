@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Login | Dormy{% endblock title %}
+
+{% block content %}
+    <div class="container-fluid" style="width:400px">
+        {% if message %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+        {% endif %}
+        <form method='POST' action='/account/login'>
+            <h1>Login</h1>
+            <div class="form-group">
+                <i class="fas fa-envelope prefix grey-text"></i>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" autofocus required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock prefix grey-text"></i>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <small>Don't have an account? <a href="/account/register">Register one today</a>.</small>
+    </div>
+{% endblock %}

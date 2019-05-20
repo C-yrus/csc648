@@ -1,0 +1,205 @@
+{% extends "layouts/base.html" %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+<link rel="stylesheet" href="/public/css/my-styles.css">
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../css/style4.css">
+{% endblock stylesheets %}
+
+{% block title %}Dashboard | Dormy{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="card-title" style="color: blue"><span style="font-size: 172%; ">Welcome, Person</span>
+    </h1>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>USER DASHBOARD</h3>
+                <strong>D</strong>
+            </div>
+
+            <ul class="list-unstyled components nav flex-column" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active show" style="color: #1ade1d" data-toggle="tab"
+                       href="#message">MESSAGES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #68de22" data-toggle="tab" href="#listings">LISTINGS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #5ade26" data-toggle="tab"
+                       href="#settings">SETTINGS</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <!-- Tab panes -->
+
+        <div class="tab-content bg-light">
+
+            <!-- MESSAGES TAB -->
+            <div id="message" class="container tab-pane active show"><br>
+                <h5 class="card-title"><strong>Here are your messages:</strong></h5>
+                <br>
+                <div class="table-responsive-lg">
+                    <table class="table" >
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col" onclick="">Listings
+                            </th>
+                            <th scope="col" onclick="">FROM
+                            </th>
+                            <th scope="col">Read</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- LISTINGS TAB -->
+            <div id="listings" class="container tab-pane fade"><br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p class="h2" style="color:indigo">My Listings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive-lg">
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Listings</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                        </thead>
+
+
+                    </table>
+                </div>
+            </div>
+
+            <!--SETTINGS TAB -->
+            <div id="settings" class="container tab-pane fade"><br>
+                <h2>Change Settings</h2>
+                <div class="container-fluid">
+                    <br>
+                    <p class="h2" style="color:indigo">Update Profile Picture</p>
+                    <hr style="background-color: #9575cd">
+
+                    <form class="form-signin form-group" method="POST"
+                          action="" enctype="multipart/form-data">
+                        <img src="images/noprofile.jpg" alt="profilePic" width="256">
+                        <br><br>
+                        <!-- Item Photo-->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input id="logo" type="file" name="image" accept="image/*"
+                                           class="custom-file-input" style="border: 1px"
+                                           required="">
+                                    <label for="logo" class="custom-file-label text-truncate">Choose
+                                        file...</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Submit SignUp Form-->
+                        <button class="btn btn-md btn-success btn-raised" type="submit"
+                                id="create_account"
+                                style="color: white; background-color: #9575cd; border-color: #9575cd; ">
+                            Update Profile Picture
+                        </button>
+                    </form>
+                    <br><br>
+
+                    <form class="form-horizontal" action="" method="post">
+
+                        <div class="row">
+                            <p class="h2" style="color:indigo">Update Password</p>
+                            <hr style="background-color: #9575cd">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <br>
+                                    <label for="form_password">Change Password
+                                        <small>(8 character minimum) *</small>
+                                    </label>
+                                    <input id="form_password" type="password" name="password"
+                                           class="form-control"
+                                           placeholder="Please Enter Your Password" maxlength="40"
+                                           pattern="^[A-Za-z0-9 ]*$"
+                                           title="Alphanumeric Characters Only" required="required">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="form_confirm_password">Confirm Password *</label>
+                                    <input id="form_confirm_password" type="password"
+                                           name="confirmpassword" class="form-control"
+                                           placeholder="Please Re-Enter Your Password"
+                                           maxlength="40" pattern="^[A-Za-z0-9 ]*$"
+                                           title="Alphanumeric Characters Only" required="required">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <button class="btn btn-md btn-success btn-raised" formmethod="post"
+                                        type="submit"
+                                        style="color: white; background-color: #9575cd; border-color: #9575cd; ">
+                                    Update Password
+                                </button>
+                            </div>
+                            <input type="hidden" id="user_id" name="user_id" value="13">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--closes tab content from messages tab-->
+        </div>
+
+        </nav>
+
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
+
+
+{% block javascripts %}
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function () {-->
+<!--        $('#sidebarCollapse').on('click', function () {-->
+<!--            $('#sidebar').toggleClass('active');-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+{% endblock javascripts %}

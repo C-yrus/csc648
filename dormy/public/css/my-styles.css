@@ -1,0 +1,96 @@
+/* Homepage */
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.py-5 {
+    padding-bottom: 3em !important;
+    padding-top: 3em !important;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+/***********************************************
+category (form) 
+************************************************/
+
+/* Categories*/
+.input-select {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-right: 10px;
+    border-radius: 1px;
+    border-width: 3px;
+    height: 33px;
+    border-color: #e6e6e6;
+}
+
+/* Search bar */
+.search-style {
+    background-color: #f8f9fa !important;
+    border-left: black;
+    border-right: none;
+    border-top: none;
+    padding-right: 10px;
+    border-radius: 1px;
+    border-width: 3px;
+    height: 33px;
+    width: 300px;
+}
+
+/* /Homepage */
+
+/*Distance Page*/
+
+#right-panel {
+    font-family: 'Roboto', 'sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+#right-panel select, #right-panel input {
+    font-size: 15px;
+}
+
+#right-panel select {
+    width: 100%;
+}
+
+#right-panel i {
+    font-size: 12px;
+}
+
+/*html, body {*/
+/*    height: 100%;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+#map-add {
+    height: 100%;
+    width: 50%;
+}
+
+#right-panel {
+    float: right;
+    width: 50%;
+    padding-left: 2%;
+}
+
+#output {
+    font-size: 20px;
+}

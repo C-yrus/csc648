@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Register | Dormy{% endblock title %}
+
+{% block content %}
+    <div class="container-fluid" style="width:400px">
+        {% if message %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endif %}
+        <form method='POST' action='/account/register'>
+            <h1> Register Now!</h1>
+            <!-- NAME -->
+            <div class="md-form mb-4">
+                <i class="fas fa-lock prefix grey-text"></i>
+                <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+                <input type="text" name="first_name" id="defaultForm-pass" class="form-control validate"
+                       maxlength="15" placeholder="First Name" autofocus required>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-lock prefix grey-text"></i>
+                <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-envelope prefix grey-text"></i>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock prefix grey-text"></i>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock prefix grey-text"></i>
+                <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                  I accept the term and conditions
+                </label>
+            </div>              
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+{% endblock %}

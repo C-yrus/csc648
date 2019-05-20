@@ -1,0 +1,163 @@
+{% extends "layouts/base.html" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/style4.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="stylesheet"
+      href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+      integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/my-styles.css">
+{% endblock stylesheets %}
+
+{% block title %}Dashboard | Dormy{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="card-title"><span>Welcome, {{user.first_name}}!</span>
+    </h1>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>DASHBOARD</h3>
+            </div>
+
+            <ul class="list-unstyled components nav flex-column" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active show" style="color: #1ade1d" data-toggle="tab"
+                       href="#message">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #68de22" data-toggle="tab" href="#listings">Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #5ade26" data-toggle="tab"
+                       href="#settings">Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <!-- Tab panes -->
+        <div class="tab-content bg-light">
+            <!-- MESSAGES TAB -->
+            <div id="message" class="container tab-pane active show"><br>
+                <div class="container">
+                    <div class="row">
+                        <p class="h2">My Messages</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">From Name</th>
+                        <th scope="col">From Email</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for message in messages %}
+                    <tr>
+                        <th scope="row">{{message.id}}</th>
+                        <td>{{message.from_name}}</td>
+                        <td>{{message.from_email}}</td>
+                        <td>{{message.message}}</td>
+                        <td>{{message.created}}</td>
+                        <td>
+                            <a href="/listings/{{message.listing_id}}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    View Listing
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- LISTINGS TAB -->
+            <div id="listings" class="container tab-pane fade"><br>
+                <div class="container">
+                    <div class="row">
+                        <p class="h2">My Listings</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Rent (monthly)</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for listing in listings %}
+                    <tr>
+                        <th scope="row">{{ listing.id }}</th>
+                        <td>{{ listing.address }}</td>
+                        <td>${{ listing.rent }}</td>
+                        <td>{{ listing.created }}</td>
+                        <td>
+                            <a href="/listings/{{ listing.id }}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    View Listing
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!--SETTINGS TAB -->
+            <div id="settings" class="container tab-pane fade"><br>
+                <h2>Update Password</h2>
+                <div class="container-fluid">
+                    <form class="form-horizontal" action="" method="post">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <br>
+                                    <input id="form_password" type="password" name="password"
+                                           class="form-control"
+                                           placeholder="New Password" maxlength="40"
+                                           pattern="^[A-Za-z0-9 ]*$"
+                                           title="Alphanumeric Characters Only" required="required">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input id="form_confirm_password" type="password"
+                                           name="confirmpassword" class="form-control"
+                                           placeholder="New Password Again"
+                                           maxlength="40" pattern="^[A-Za-z0-9 ]*$"
+                                           title="Alphanumeric Characters Only" required="required">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <button class="btn btn-md btn-success btn-raised" formmethod="post"
+                                        type="submit"
+                                        style="color: white; background-color: #9575cd; border-color: #9575cd; ">
+                                    Update Password
+                                </button>
+                            </div>
+                            <input type="hidden" id="user_id" name="user_id" value="13">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--closes tab content from messages tab-->
+        </div>
+    </div>
+</div>
+{% endblock content %}

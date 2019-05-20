@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="utf8"/>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140295483-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-140295483-1');
+    </script>
+
+    <title>{% block title %}{% endblock title %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet"
+          href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+          integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/my-styles.css">
+    <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+    {% endblock stylesheets %}
+
+    <!-- Google map api styling -->
+    <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+              height: 325px;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+              height: 400px;
+              margin: 0;
+              padding: 0;
+            }
+    </style>
+</head>
+<body>
+{% include "layouts/navigation.html" %}
+<hr>
+
+{% block content %}
+{% endblock content %}
+
+{% include "layouts/footer.html" %}
+
+{% block javascripts %} 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn8zKXtCFQQtOvw07ZJhqBazzr4pzn_Do&callback=initMap"
+    async defer></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+{% endblock javascripts %}
+</body>
+</html>

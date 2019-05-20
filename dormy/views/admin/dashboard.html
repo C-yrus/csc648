@@ -1,0 +1,190 @@
+{% extends "layouts/base.html" %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/css/style4.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="stylesheet"
+      href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+      integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/my-styles.css">
+{% endblock stylesheets %}
+
+{% block title %}Admin Dashboard | Dormy{% endblock title %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <h1 class="card-title"><span>Welcome, {{user.first_name}}!</span>
+    </h1>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>DASHBOARD</h3>
+            </div>
+
+            <ul class="list-unstyled components nav flex-column" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active show" style="color: #1ade1d" data-toggle="tab"
+                       href="#pending">Pending Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #68de22" data-toggle="tab" 
+                        href="#listings">Active Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color: #5ade26" data-toggle="tab"
+                       href="#users">Users</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Tab panes -->
+        <div class="tab-content bg-light">
+            <!-- PENDING LISTINGS TAB -->
+            <div id="pending" class="container tab-pane active show"><br>
+                <div class="container">
+                    <div class="row">
+                        <p class="h2">Pending Listings</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Rent</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Accept</th>
+                        <th scope="col">Reject</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in pending %}
+                    <tr>
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.address}}</td>
+                        <td>{{item.rent}}</td>
+                        <td>{{item.created}}</td>
+                        <td>
+                            <a href="/listings/{{item.id}}" target="_blank">
+                                <button type="button"class="btn btn-sm btn-outline-secondary">
+                                    View Detail
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/accept">
+                                <input type="hidden" name="id" value="{{item.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Accept</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/reject">
+                                <input type="hidden" name="id" value="{{item.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- LISTINGS TAB -->
+            <div id="listings" class="container tab-pane fade"><br>
+                <div class="container">
+                    <div class="row">
+                        <p class="h2">Active Listings</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Rent</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for listing in listings %}
+                    <tr>
+                        <th scope="row">{{listing.id}}</th>
+                        <td>{{listing.address}}</td>
+                        <td>{{listing.rent}}</td>
+                        <td>{{listing.created}}</td>
+                        <td>
+                            <a href="/listings/{{listing.id}}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">
+                                    View Listing
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/delete-listing">
+                                <input type="hidden" name="id" value="{{listing.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                            </form>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- USERS TAB -->
+            <div id="users" class="container tab-pane fade"><br>
+                <div class="container">
+                    <div class="row">
+                        <p class="h2">All Users</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Blocked</th>
+                        <th scope="col">Block</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <th scope="row">{{ user.id }}</th>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.banned }}</td>
+                        <td>
+                            <form method="POST" action="/admin/block">
+                                <input type="hidden" name="id" value="{{user.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Block</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/delete-user">
+                                <input type="hidden" name="id" value="{{user.id}}"/>
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

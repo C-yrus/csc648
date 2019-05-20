@@ -1,0 +1,104 @@
+
+<!-- RESPONSIVE HOMEPAGE -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Layout Master</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="../css/template.css">
+  <!--  Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140295483-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-140295483-1');
+  </script>
+ 
+</head>
+<body>
+  {% include "layouts/homepageNav.html" %}
+
+  <!-- <div class="zone blue grid-wrapper" > -->
+
+    <!-- {% for listing in listings %}
+      <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+        <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+          <h5 class="text-center" class="card-title">{{ listing.title }}</h5>
+            <img class="card__image" class="card bg-light mb-3" alt="Car" style= "max-width: 100%" style="max-height: 100%"   src="/thumbnails/{{listing.thumbnail}}">
+        </a>
+      </div>
+    {% else %}
+      <p>No listings found...</p>
+    {% endfor %} -->
+
+    <!-- {% for listing in listings %}
+    <div class="responsive">
+      <div class="gallery">
+        <a target="_blank" href="img_5terre.jpg">
+          <img src="/thumbnails/{{listing.thumbnail}}" alt="Cinque Terre">
+        </a>
+        <div class="desc">Add a description of the image here</div>
+      </div>
+    </div>
+    {% else %}
+      <p>No listings found...</p>
+    {% endfor %} -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort by:
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Price</button>
+            <button class="dropdown-item" type="button">Distance</button>
+            <button class="dropdown-item" type="button">Newest</button>
+          </div>
+        </div>
+        <div class="zone blue grid-wrapper" >
+          {% for listing in listings %}
+            <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+              <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+                <h5 class="top-tittle">{{ listing.title }}</h5>
+                  <img class="card__images" class="card bg-light mb-3" alt="Car" style= "max-width: 100%" style="max-height: 100%"   src="/thumbnails/{{listing.thumbnail}}">
+                  <h6 class="price">${{ listing.rent }}/Mo </h6>
+                  
+                  <h6 class="address">Address: {{ listing.address }}</h6>
+                  <h6 class="card-title"></h6>
+                  <h6 class="type-item">Type: {{ listing.type }}</h6>
+                
+              </a>
+            </div>
+          {% else %}
+            <p>No listings found...</p>
+          {% endfor %}
+        </div>
+        <!-- PAGING -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+<!-- 
+  </div> -->
+  {% include "layouts/footer.html" %}
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<div style="background-color: red">SFSU Software Engineering Project CSC 648-848, Spring 2019.  For Demonstration Only</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand flaticon-hotel" href="/">Dormy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- NAVIGATION BAR -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/listings/">Listings</a></li>
+            <li class="nav-item"><a class="nav-link" href="/listings/add">Post A Listing</a></li>
+            <li class="nav-item dropdown">
+                <!-- DROPDOWN MENU -->
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Account
+                </a>
+                <!-- DROPDOWN MENU FOR USER REGISTRATION AND LOGIN -->
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/account">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLoginForms">Login</a>
+                    <div class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLoginForm">Register</div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/account/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+        <!-- SEARCH CATEGORY -->
+        <form class="form-inline" action="/listings">
+            <select class="input-select" name="type" id="name">
+                <option value="{{type}}">{{type.charAt(0).toUpperCase() + type.slice(1) + 's' if type else 'Category..'}}</option>
+                <option value="">All</option>
+                <option value="apartment">Apartments</option>
+                <option value="house">Houses</option>
+                <option value="condo">Condos</option>
+            </select>
+            <!-- SEARCH INPUT -->
+            <input class="search-style" type="search + password" value="{{query}}" name="query" placeholder="Search by: City, Title, Address"
+                   aria-label="Search" class="form-control validate" maxlength="40" pattern=".{5,40}" title="City, zip code 5-40 characters">
+            <button class="btn btn-outline-success my-3 my-sm-0" style="border-radius: 10px" 
+                type="submit" >Search
+            </button>
+        </form>
+    </div>
+</nav>
+
+<!-- MODALS REGISTER AND LOGIN -->
+
+<!-- REGISTER -->
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Register Now!</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body mx-3">
+                <form method="POST" action="/account/register/">
+
+                    <!-- NAME -->
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Name</label>
+                        <input type="text" name="first_name" id="defaultForm-pass" class="form-control validate"
+                               maxlength="15" placeholder="First Name" autofocus required>
+                    </div>
+
+                    <!-- LAST NAME -->
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Last Name</label>
+                        <input type="text" name="last_name" id="defaultForm-pass" class="form-control validate"
+                               maxlength="15" placeholder="Last Name" required>
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
+                        <input name="email" name="email" type="email" id="defaultForm-email"
+                               class="form-control validate" placeholder="Enter email" required>
+                        <small id="emailHelp" class="text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                        <input type="password" name="password" id="defaultForm-pass" class="form-control validate"
+                               pattern=".{8,20}" title="Must be 8-20 characters long." placeholder="Password" required>
+                        <small id="passwordHelpInline" class="text-muted">Must be 8-20 characters long.</small>
+                    </div>
+
+                    <!-- Phone Number-->
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Phone number</label>
+                        <input type="tel" name="phone" id="defaultForm-pass" class="form-control validate"
+                               pattern="^\d{3}-\d{3}-\d{4}$" title="Format: XXX-XXX-XXXX" placeholder="Phone Number"
+                               required>
+                        <small id="passwordHelpInline" class="text-muted">Phone number must be 10 digits.</small>
+                    </div>
+
+                    <!-- Acceptance of terms -->
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">I accept the terms and conditions</label>
+                    </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-success">Register Now!</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /REGISTER -->
+
+<!-- LOGIN -->
+<div class="modal fade" id="modalLoginForms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Log in</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <form method="POST" action="/account/login">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Email</label>
+                        <input type="email" name="email" id="defaultForm-email" class="form-control validate"
+                               class="form-control validate" placeholder="Enter email" autofocus required>
+                    </div>
+
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
+                        <input type="password" name="password" id="defaultForm-pass" class="form-control"
+                               class="form-control validate" title="Must be 8-20 characters long."
+                               placeholder="Password" required>
+                        <small id="passwordHelpInline" href="" class="text-muted">Must be 8-20 characters long.</small>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /LOGIN -->

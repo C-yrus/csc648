@@ -1,0 +1,45 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Post New Listing | Dormy{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Post New Listing</h1>
+            <form action="/listings" method="post" enctype="multipart/form-data">
+                <select class="custom-select mr-sm-2" name="type" required>
+                    <option selected>Choose Unit Type...</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">House</option>
+                    <option value="condo">Condo</option>
+                </select>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="title" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="7" name="description" placeholder="Unit Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="address" aria-describedby="addyHelp" placeholder="Address" required>
+                    <small id="addyHelp" class="form-text text-muted">We'll never share your address with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="beds" placeholder="Number of Beds" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="baths" placeholder="Number of Baths" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="rent" placeholder="Rent Per Month ($)" required>
+                </div>
+                <div class="form-group">
+                    <input type="file" class="form-control" name="thumbnail" placeholder="Thumbnail" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Individual Listing</title>
+	<link rel="stylesheet" type="text/css" href="../css/individualListing.css">
+    <!--  Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140295483-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-140295483-1');
+    </script>
+</head>
+<body>
+	<header class="title">
+			<h1>Listing Name</h1>
+	</header>
+	<div class="image">
+		<img src="../images/house.png" alt="dormy house">
+
+	<div class="box-1">
+		<h3>Description</h3>
+		<ul class="listing-description">
+
+                <li>Type: {{ listing.type }}</li>
+                <li>Title: {{ listing.title }}</li>
+                <li>Address: {{ listing.address }}</li>
+                <li>Beds: {{ listing.beds }}</li>
+                <li>Baths: {{ listing.baths }}</li>
+                <li>Rent: ${{ listing.rent }}/month</li>
+                <li>Distance from SFSU: {{ listing.distance }} miles</li>
+                <li>Added: {{ listing.created }}</li>
+            </ul>
+            <button class="review">Review Listing</button>
+            <button>Contact Landlord</button>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <!--
+            <a class="button" href="">Contact Landlord</a>
+        -->
+        </div>
+
+    </div>
+    
+  <div class="zone blue grid-wrapper" >
+
+    {% for listing in listings %}
+      <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+        <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+          <h5 class="text-center" class="card-title">{{ listing.title }}</h5>
+            <img class="card__image" class="card bg-light mb-3" alt="Car" style= "max-width: 100%" style="max-height: 100%"   src="/thumbnails/{{listing.thumbnail}}">
+        </a>
+      </div>
+    {% else %}
+      <p>No listings found...</p>
+    {% endfor %}
+  
+  
+  
+  
+        <!-- CARD 1 -->
+        <div  class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+          <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+            <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
+              <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
+          </a>
+        </div>
+  
+        <!-- CARD 2 -->
+        <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+            <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+              <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
+                <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
+            </a>
+        </div>
+  
+        <!-- CARD 3 -->
+        <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+            <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+              <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
+                <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
+            </a>
+        </div>
+        <!-- CARD 4 -->
+        <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+            <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+              <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
+                <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
+            </a>
+        </div>
+  
+        <!-- CARD 5 -->
+        <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+            <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+              <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
+                <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
+            </a>
+        </div>
+  
+        <!-- CARD 6 -->
+        <div class="card bg-light mb-3" alt="Car" style="width: 100%" class="card border-primary mb-3" style="max-width: 18rem;">       
+            <a style="text-decoration:none" href="/listings/add" class="card-body text-primary">
+              <h5 class="text-center" class="card-title">GREAT APPARTMENT NEAR CAMPUS</h5>
+                <img class="card__image" class="card bg-light mb-3" alt="Car" style="width: 100%" class="card bg-light mb-3" alt="Car" style="width: 100%" src="https://cdn.houseplansservices.com/product/nefd91a8br9itgmjos2jvtltac/w300x200.jpg?v=9">
+            </a>
+        </div>
+    </div>
+    {% include "layouts/footer.html" %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--
+	<button class="contact">Contact Landlord</button>
+-->
+	<footer class="main-footer">Copyright &copy; Domry 2019</footer>
+</body>
+</html>
