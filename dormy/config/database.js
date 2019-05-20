@@ -7,8 +7,6 @@ const opts = {
     }
 };
 const pgp = require('pg-promise')(opts);
-// const db = pgp('postgres://dormyuser:dormy123@localhost:5432/dormy');
-
 const db = pgp(
     {
         user: 'csc648',
