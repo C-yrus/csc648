@@ -17,4 +17,5 @@ const db = pgp(
         password: 'password'
     }
 );
+
 module.exports = db;

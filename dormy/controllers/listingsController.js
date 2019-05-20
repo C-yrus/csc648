@@ -5,13 +5,39 @@ module.exports.list = (req, res) => {
     // express populates value in req.query from URL; `/listings?type=TYPE&query=SEARCH_QUERY`
     let type = req.query.type;
     let query = req.query.query;
-    let q = `SELECT * FROM listings`;
+    let filter = req.query.filter;
+    let filterAS = req.query.filterAS;
+
+    let q = `SELECT * FROM listings WHERE approved='true'`;
+
     if (type && query) {
-        q = `SELECT * FROM listings WHERE type = '${type}' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
-    } else if (!type && query) {
-        q = `SELECT * FROM listings WHERE LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
-    } else if (type && !query) {
-        q = `SELECT * FROM listings WHERE type = '${type}'`;
+        q = `SELECT * FROM listings WHERE type = '${type}' AND approved='true' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%')`;
+    } else if (!type && query ) {
+        q = `SELECT * FROM listings WHERE approved='true' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%'`;
+    } else if (type && !query ) {
+        q = `SELECT * FROM listings WHERE approved='true' AND type = '${type}'`;
+    }
+
+    if (filter) {
+        q = `SELECT * FROM listings WHERE approved='true' ORDER BY ${filter.valueOf()} DESC`;
+        if(type && !query) {
+            q = `SELECT * FROM listings WHERE approved='true' AND (type = '${type}') ORDER BY ${filter.valueOf()} DESC`;
+        } else if(!type && query) {
+            q = `SELECT * FROM listings WHERE approved='true' AND (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filter.valueOf()} DESC`;
+        }else if(type && query){
+            q = `SELECT * FROM listings WHERE type = '${type}' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filter.valueOf()} DESC`;
+        }
+    }
+
+    if (filterAS) {
+        q = `SELECT * FROM listings WHERE approved='true' ORDER BY ${filterAS.valueOf()} ASC`;
+        if(type && !query) {
+            q = `SELECT * FROM listings WHERE (type = '${type}') ORDER BY ${filterAS.valueOf()} ASC`;
+        } else if(!type && query) {
+            q = `SELECT * FROM listings WHERE (LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%) ORDER BY ${filterAS.valueOf()} ASC`;
+        }else if(type && query){
+            q = `SELECT * FROM listings WHERE type = '${type}' AND LOWER(title) LIKE '%${query}%' OR LOWER(address) LIKE '%${query}%' ORDER BY ${filterAS.valueOf()} ASC`;
+        }
     }
     db.any(q)
         .then(data => {
@@ -19,27 +45,36 @@ module.exports.list = (req, res) => {
                 listings: data,
                 qCount: data.length,
                 type: type,
-                query: query
+                query: query,
+                filter: filter,
+                filterAS: filterAS,
+                q: q
             });
         })
         .catch(err => console.error(`Error fetching listings; ${err}`));
 };
 
+
 // controller for route: GET `/listings/:id`
 // `:id` is populated from the listing detail route in /routes/
 module.exports.detail = (req, res) => {
-    db.one(`SELECT * FROM listings WHERE id = '${req.params.id}'`)
+    db.one(`SELECT * FROM listings WHERE id = '${req.params.id}' AND approved = 'true'`)
         .then(data => {
             res.render('listings/detail', {
                 listing: data,
             });
         })
-        .catch(err => res.send(`Error retrieving listing detail; ${err}`));
+        .catch(() => res.redirect('/account'));
 };
 
 // controller for route; GET `/listings/add`
 module.exports.add = (req, res) => {
     res.render('add', {});
+};
+
+// controller for route; GET `/listings/distance`
+module.exports.distance = (req, res) => {
+    res.render('distance', {});
 };
 
 // controller for route; POST `/listings/add`

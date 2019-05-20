@@ -46,7 +46,7 @@ app.use(passport.session());
 
 // routes
 app.get('/', (req, res) => {
-    db.any(`SELECT * FROM listings ORDER BY id DESC`)
+    db.any(`SELECT * FROM listings WHERE approved = 'true' ORDER BY id DESC`)
     .then(data => res.render('index', {
         listings: data
     }))
